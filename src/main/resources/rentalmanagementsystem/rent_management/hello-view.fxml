@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="676.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane prefHeight="707.0" prefWidth="907.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="907.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="72.0" prefWidth="907.0" style="-fx-alignment: CENTER;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT TRACKING">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Line endX="651.2929077148438" endY="-1.6568543910980225" startX="-100.0" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="129.0" prefWidth="790.0" spacing="15.0" style="-fx-alignment: center;">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: E0EDDB; -fx-background-radius: 10;">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="-4.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: E0EDDB; -fx-background-radius: 10;">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="-4.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: E0EDDB; -fx-background-radius: 10;">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="-4.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="246.0" prefWidth="844.0" style="-fx-alignment: center;">
+                     <children>
+                        <BarChart prefHeight="191.0" prefWidth="500.0">
+                          <xAxis>
+                            <CategoryAxis prefWidth="443.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="227.0" prefWidth="907.0">
+                     <children>
+                        <TableView prefHeight="216.0" prefWidth="907.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

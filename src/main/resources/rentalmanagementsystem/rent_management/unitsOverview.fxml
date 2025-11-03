@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.unitsOverviewController">
+   <children>
+      <VBox layoutX="538.0" layoutY="167.0" prefHeight="131.0" prefWidth="1280.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="UNITS OVERVIEW">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <HBox layoutY="127.0" prefHeight="60.0" prefWidth="648.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="ALL" />
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="Occupied" />
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="Vacant" />
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="Reserved" />
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="overviewTable" layoutX="27.0" layoutY="262.0" prefHeight="489.0" prefWidth="1241.0" styleClass="tableView" stylesheets="@system.css">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="316.0" styleClass="tableColumn" text="tenant" />
+          <TableColumn fx:id="idColumn" prefWidth="272.0" styleClass="tableColumn" text="ID#" />
+            <TableColumn fx:id="unitNoColumn" prefWidth="127.0" styleClass="tableColumn" text="unit no." />
+            <TableColumn fx:id="statusColumn" prefWidth="214.0" styleClass="tableColumn" text="status" />
+            <TableColumn fx:id="capacityColumn" prefWidth="147.0" styleClass="tableColumn" text="room capacity" />
+            <TableColumn fx:id="areaColumn" prefWidth="164.0" styleClass="tableColumn" text="area" />
+        </columns>
+         <effect>
+            <InnerShadow radius="8.5" width="15.0" />
+         </effect>
+      </TableView>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
+            <AnchorPane fx:id="drawerPane" layoutX="28.0" layoutY="20.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: E0EDDB;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutX="28.0" layoutY="77.0" prefHeight="338.0" prefWidth="132.0" spacing="20.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="133.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="DASHBOARD" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="INVENTORY" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="STOCKS" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="SALES" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="REPORTS" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="HISTORY" />
+                     </children>
+                  </VBox>
+                  <Button layoutX="3.0" layoutY="748.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="34.0" layoutY="83.0" prefHeight="600.0" prefWidth="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@../../../../../../Project_System/src/main/resources/images/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="27.0" layoutY="208.0" prefHeight="48.0" prefWidth="324.0" style="-fx-background-color: white;" styleClass="columnTitle" stylesheets="@system.css">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <children>
+                  <Label layoutX="138.0" layoutY="10.0" text="Name">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="355.0" layoutY="208.0" prefHeight="48.0" prefWidth="267.0" style="-fx-background-color: white;" styleClass="columnTitleMiddle" stylesheets="@system.css">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="121.0" layoutY="11.0" text="ID #">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="625.0" layoutY="208.0" prefHeight="48.0" prefWidth="126.0" style="-fx-background-color: white;" styleClass="columnTitleMiddle" stylesheets="@system.css">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="29.0" layoutY="11.0" text="Unit No.">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="754.0" layoutY="208.0" prefHeight="48.0" prefWidth="209.0" style="-fx-background-color: white;" styleClass="columnTitleMiddle" stylesheets="@system.css">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="78.0" layoutY="11.0" text="Status">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="967.0" layoutY="208.0" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: white;" styleClass="columnTitleMiddle" stylesheets="@system.css">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="34.0" layoutY="2.0" prefHeight="42.0" prefWidth="92.0" text="Capacity">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1114.0" layoutY="208.0" prefHeight="48.0" prefWidth="154.0" style="-fx-background-color: white;" styleClass="columnTitleEnd" stylesheets="@system.css">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="57.0" layoutY="10.0" text="Area">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

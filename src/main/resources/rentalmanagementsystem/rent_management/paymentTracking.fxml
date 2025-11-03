@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.PaymentTrackingController">
+   <children>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="1040.0" prefWidth="1232.0">
+               <children>
+                  <VBox prefHeight="144.0" prefWidth="1232.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="PAYMENT TRACKING">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <HBox layoutY="136.0" prefHeight="175.0" prefWidth="1280.0" spacing="30.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="166.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="box" stylesheets="@system.css">
+                           <children>
+                              <AnchorPane layoutX="13.0" layoutY="9.0" prefHeight="149.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 15;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+                                 <effect>
+                                    <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                                 </effect>
+                              </AnchorPane>
+                              <Label layoutX="50.0" layoutY="7.0" text="Total Rent Collected">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="166.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="box" stylesheets="@system.css">
+                           <children>
+                              <AnchorPane layoutX="13.0" layoutY="9.0" prefHeight="149.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 15;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+                                 <effect>
+                                    <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                                 </effect>
+                              </AnchorPane>
+                              <Label layoutX="78.0" layoutY="6.0" text="Total Overdue">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="166.0" prefWidth="274.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="box" stylesheets="@system.css">
+                           <children>
+                              <AnchorPane layoutX="13.0" layoutY="9.0" prefHeight="149.0" prefWidth="200.0" style="-fx-background-color: EAF4F4; -fx-background-radius: 15;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+                                 <effect>
+                                    <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                                 </effect>
+                              </AnchorPane>
+                              <Label layoutX="61.0" layoutY="6.0" text="Total Paid Tenants">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
+                           </effect>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <AnchorPane layoutX="178.0" layoutY="355.0" prefHeight="363.0" prefWidth="886.0" style="-fx-background-radius: 20; -fx-background-color: white;">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                     <children>
+                        <BarChart fx:id="revenueChart" layoutX="20.0" layoutY="20.0" prefHeight="277.0" prefWidth="886.0" styleClass="bar" stylesheets="@system.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                          <xAxis>
+                            <CategoryAxis fx:id="monthAxis" side="BOTTOM" styleClass="bar" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="revenueAxis" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </AnchorPane>
+                  <TableView fx:id="paymentHistoryTable" layoutX="91.0" layoutY="747.0" prefHeight="325.0" prefWidth="1088.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="199.6666717529297" text="NAME" />
+                      <TableColumn fx:id="idColumn" prefWidth="172.33334350585938" text="ID#" />
+                        <TableColumn fx:id="unitColumn" prefWidth="103.66665649414062" text="UNIT NO." />
+                        <TableColumn fx:id="amountPaidColumn" prefWidth="194.33334350585938" text="AMOUNT PAID" />
+                        <TableColumn fx:id="paymentDateColumn" prefWidth="186.6666259765625" text="PAYMENT DATE" />
+                        <TableColumn fx:id="modeOfPaymentColumn" prefWidth="236.66668701171875" text="MODE OF PAYMENT" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="1086.0" layoutY="705.0" mnemonicParsing="false" onAction="#showAddPayment" text="Add Cash Payment" />
+                  <AnchorPane fx:id="addPaymentPane" layoutX="107.0" layoutY="168.0" prefHeight="519.0" prefWidth="993.0" style="-fx-background-color: white;" visible="false">
+                     <children>
+                        <TextField fx:id="tenantNameField" layoutX="304.0" layoutY="105.0" prefHeight="45.0" prefWidth="321.0" />
+                        <TextField fx:id="amountField" layoutX="302.0" layoutY="235.0" prefHeight="48.0" prefWidth="326.0" />
+                        <Label layoutX="309.0" layoutY="77.0" text="Name">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="311.0" layoutY="202.0" text="Amount">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="305.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleAddPayment" prefHeight="45.0" prefWidth="151.0" text="ENTER" />
+                        <Label fx:id="roomNoLabel" layoutX="307.0" layoutY="173.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </content>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </ScrollPane>
+      <AnchorPane fx:id="drawerPane" prefHeight="800.0" prefWidth="217.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="40.0" layoutY="72.0" prefHeight="17.0" prefWidth="129.0" text="WELCOME">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/burger.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
