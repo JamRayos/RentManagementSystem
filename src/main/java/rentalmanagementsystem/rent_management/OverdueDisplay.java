@@ -29,4 +29,14 @@ public class OverdueDisplay {
     public LocalDateTime getDueDate() {return dueDate;}
     public int getDaysOverdue() {return daysOverdue;}
     public boolean getArchived() {return archived;}
+
+//    setters
+    public void setName(String name) {this.name = name;}
+    public void setTenantAccountId(int tenantAccountId) {this.tenantAccountId = tenantAccountId;}
+    public void setRoomNo(String roomNo) {this.roomNo = roomNo;}
+    public void setOverdueBalance(double overdueBalance) {this.overdueBalance = overdueBalance;}
+    public void setDueDate(LocalDateTime dueDate) {this.dueDate = dueDate;}
+    public void setDaysOverdue(int daysOverdue) {this.daysOverdue = daysOverdue;}
+    public void setArchived(boolean archived) {this.archived = archived;}
+
 }
