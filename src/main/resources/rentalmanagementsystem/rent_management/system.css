@@ -20,47 +20,41 @@
 }
 
 .table-view {
-    -fx-background-color: white;          /* no default gray background */
+    -fx-background-color: white;          
     -fx-padding: 10;
     -fx-background-radius: 15;
     -fx-border-width: 1;
 }
 
-/* each row as a card */
 .table-row-cell {
-    -fx-background-color: #EAF3F0;       /* light mint background */
+    -fx-background-color: #EAF3F0;       
     -fx-border-width: 1;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-padding: 6 12 6 12;
 }
 
-/* spacing between rows */
 .table-row-cell:filled {
     -fx-background-insets: 2;
 }
 
 
-/* hover effect */
 .table-row-cell:hover {
     -fx-background-color: #D8EDE5;
     -fx-cursor: hand;
 }
 
-/* selected row effect */
 .table-row-cell:selected {
     -fx-background-color: #BFD8C4;
     -fx-border-color: #8BAC7D;
 }
 
-/* remove cell grid lines */
 .table-cell {
     -fx-border-color: transparent;
     -fx-padding: 8 12 8 12;
     -fx-font-size: 14px;
 }
 
-/* optional rounded scrollbars */
 .scroll-bar:horizontal, .scroll-bar:vertical {
     -fx-background-color: transparent;
 }
