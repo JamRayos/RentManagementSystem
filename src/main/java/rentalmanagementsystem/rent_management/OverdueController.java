@@ -28,7 +28,7 @@ public class OverdueController {
         overdueBalanceColumn.setCellValueFactory(new PropertyValueFactory<>("overdueBalance"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         daysOverdueColumn.setCellValueFactory(new PropertyValueFactory<>("daysOverdue"));
-        evictionColumn.setCellValueFactory(new PropertyValueFactory<>("evictionNotice"));
+        evictionColumn.setCellValueFactory(new PropertyValueFactory<>("archived"));
 
         loadOverdueTable();
 
@@ -36,41 +36,50 @@ public class OverdueController {
     private void loadOverdueTable() {
         ObservableList<OverdueDisplay> data = FXCollections.observableArrayList();
         String query = """
-                SELECT
-                        SELECT
-                                t.name AS name,
-                                t.tenantAccountId,
-                                r.roomNo,
-                                (b.rentAmount - COALESCE(SUM(p.amountPaid), 0)) AS overdueBalance,
-                                MAX(r.startDate) AS dueDate,
-                                GREATEST(DATEDIFF(CURDATE(), MAX(r.startDate)), 0) AS daysOverdue,
-                                CASE
-                                    WHEN DATEDIFF(CURDATE(), MAX(b.dueDate)) > 30 THEN TRUE
-                                    ELSE FALSE
-                                END AS evictionNotice
-                            FROM tenantAccount t
-                            JOIN roomAccount r ON t.unitId = r.unitId
-                            JOIN billing b ON b.unitId = r.unitId
-                            LEFT JOIN paymentTracking p ON t.tenantAccountId = p.tenantId
-                            GROUP BY t.tenantAccountId, t.name, r.roomNo;
-                
-                """;
+                SELECT\s
+                    t.name,
+                    t.tenantAccountId,
+                    r.roomNo,
+                    b.rentAmount,
+                    r.startDate,
+                    t.archived,
+                   \s
+                    -- Months the tenant has stayed
+                    TIMESTAMPDIFF(MONTH, r.startDate, CURDATE()) AS monthsElapsed,
+                   \s
+                    -- Total balance owed (monthly rent * months elapsed) - payments
+                    (TIMESTAMPDIFF(MONTH, r.startDate, CURDATE()) * b.rentAmount) - COALESCE(p.totalPaid, 0) AS overdueBalance,
+                   \s
+                    -- Days overdue: number of days since their most recent due date (same day as startDate each month)
+                    CASE\s
+                        WHEN DAY(CURDATE()) > DAY(r.startDate)\s
+                            THEN DATEDIFF(CURDATE(), DATE(CONCAT(YEAR(CURDATE()), '-', MONTH(CURDATE()), '-', DAY(r.startDate))))
+                        ELSE 0
+                    END AS daysOverdue
+               \s
+                FROM tenantAccount t
+                JOIN roomAccount r ON t.unitId = r.unitId
+                JOIN billing b ON b.unitId = r.unitId
+                LEFT JOIN (
+                    SELECT tenantId, SUM(amountPaid) AS totalPaid
+                    FROM paymentTracking
+                    GROUP BY tenantId
+                ) p ON t.tenantAccountId = p.tenantId\s
+               \s""";
 
         try (Connection conn = DbConn.connectDB()){
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                Timestamp timestamp = rs.getTimestamp("dueDate");
-                LocalDateTime dueDate = timestamp != null ? timestamp.toLocalDateTime() : null;
                 data.add(new OverdueDisplay(
-                   rs.getString("name"),
-                   rs.getInt("tenantAccountId"),
-                   rs.getString("roomNo"),
-                   rs.getDouble("overdueBalance"),
-                   dueDate,
-                   rs.getInt("daysOverdue"),
-                   rs.getBoolean("evictionNotice")
+                        rs.getString("name"),
+                        rs.getInt("tenantAccountId"),
+                        rs.getString("roomNo"),
+                        rs.getDouble("overdueBalance"),
+                        rs.getDate("startDate").toLocalDate().atStartOfDay(),
+                        rs.getInt("daysOverdue"),
+                        rs.getBoolean("archived")
                 ));
             }
             overdueTableView.setItems(data);
