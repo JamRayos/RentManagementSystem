@@ -44,6 +44,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="50.0" layoutY="7.0" text="Total Rent Collected">
                                  <font>
@@ -64,6 +67,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="78.0" layoutY="6.0" text="Total Overdue">
                                  <font>
@@ -84,6 +90,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="61.0" layoutY="6.0" text="Total Paid Tenants">
                                  <font>
@@ -154,26 +163,42 @@
             <Insets left="30.0" />
          </padding>
       </ScrollPane>
-      <AnchorPane fx:id="drawerPane" prefHeight="800.0" prefWidth="217.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label layoutX="40.0" layoutY="72.0" prefHeight="17.0" prefWidth="129.0" text="WELCOME">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
       <AnchorPane prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;">
-               <graphic>
-                  <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/burger.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
+            <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="burger1" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
+                  <AnchorPane fx:id="drawerPane" layoutX="28.0" layoutY="20.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox layoutX="28.0" layoutY="77.0" prefHeight="338.0" prefWidth="132.0" spacing="20.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="133.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="DASHBOARD" />
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Payment Tracking" />
+                              <Button mnemonicParsing="false" onAction="#createAccount" prefHeight="38.0" prefWidth="200.0" text="room account" />
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="overdue" />
+                              <Button mnemonicParsing="false" onAction="#leaseButton" prefHeight="38.0" prefWidth="200.0" text="lease management" />
+                              <Button mnemonicParsing="false" onAction="#unitOverviewButton" prefHeight="38.0" prefWidth="200.0" text="units overview" />
+                           </children>
+                        </VBox>
+                        <Button layoutX="3.0" layoutY="748.0" mnemonicParsing="false" onAction="#logOutButton" prefHeight="38.0" prefWidth="132.0" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="34.0" layoutY="83.0" prefHeight="600.0" prefWidth="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../../../../../../Project_System/src/main/resources/images/menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
