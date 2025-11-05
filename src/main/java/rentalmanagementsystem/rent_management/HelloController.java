@@ -3,6 +3,7 @@ package rentalmanagementsystem.rent_management;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +19,7 @@ import javafx.util.Duration;
 public class HelloController {
 
     @FXML AnchorPane drawerPane;
+    @FXML Button burger;
     private boolean drawerOpen = true;
 
     @FXML TableView <Room> roomTableView;
@@ -170,5 +172,20 @@ public class HelloController {
                     .orElse(null);
         }
         return null;
+    }
+
+    @FXML
+    private void unitOverviewButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("unitsOverview.fxml");
+    }
+
+    @FXML
+    private void logOutButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("login.fxml");
+    }
+
+    @FXML
+    private void leaseButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("leaseManagement.fxml");
     }
 }
