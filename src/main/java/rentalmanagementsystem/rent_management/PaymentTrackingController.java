@@ -3,6 +3,7 @@ package rentalmanagementsystem.rent_management;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
@@ -15,6 +16,7 @@ import javafx.util.Duration;
 import javafx.scene.chart.XYChart;
 
 import javax.xml.transform.Result;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -84,7 +86,7 @@ public class PaymentTrackingController {
         slide.setNode(drawerPane);
 
         if (drawerOpen) {
-            slide.setToX(-200);
+            slide.setToX(-250);
             drawerOpen = false;
         } else {
             slide.setToX(0);
@@ -257,7 +259,6 @@ public class PaymentTrackingController {
                     FROM tenantAccount p
                     JOIN roomAccount r ON p.unitId = r.unitId
                     JOIN paymentTracking pt ON p.tenantAccountId = pt.tenantId
-                    WHERE p.unitId = 9 AND p.tenantAccountId = 1;
                     """;
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -374,6 +375,26 @@ public class PaymentTrackingController {
         public void setPaymentDate(LocalDateTime paymentDate) {this.paymentDate = paymentDate;}
         public void setModeOfPayment(String modeOfPayment) {this.modeOfPayment = modeOfPayment;}
 
+    }
+
+    @FXML
+    private void unitOverviewButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("unitsOverview.fxml");
+    }
+
+    @FXML
+    private void logOutButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("login.fxml");
+    }
+
+    @FXML
+    private void leaseButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("leaseManagement.fxml");
+    }
+
+    @FXML
+    private void createAccount(ActionEvent event) throws IOException {
+        SceneManager.switchScene("roomAccount.fxml");
     }
 
 }
