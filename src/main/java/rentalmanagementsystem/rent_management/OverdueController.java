@@ -67,11 +67,9 @@ public class OverdueController {
                 String billingPeriod = rs.getString("billingPeriod");
                 boolean archived = rs.getBoolean("archived");
 
-                // Compute the most recent due date
                 LocalDateTime dueDate = calculateDueDate(startDate.toLocalDate(), billingPeriod);
                 LocalDateTime now = LocalDateTime.now();
 
-                // Only consider overdue if current balance is greater than 0 AND due date has passed
                 int daysOverdue = 0;
                 if (currentBalance > 0 && now.toLocalDate().isAfter(dueDate.toLocalDate())) {
                     daysOverdue = (int) java.time.temporal.ChronoUnit.DAYS.between(dueDate, now);
@@ -81,7 +79,7 @@ public class OverdueController {
                         name,
                         tenantAccountId,
                         roomNo,
-                        currentBalance, // overdueBalance shown from currentBalance
+                        currentBalance, 
                         dueDate,
                         daysOverdue,
                         archived
@@ -108,12 +106,10 @@ public class OverdueController {
         LocalDate dueDate = startDate;
         LocalDate today = LocalDate.now();
 
-        // Keep adding periods until dueDate is the next due
         while (!dueDate.isAfter(today)) {
             dueDate = dueDate.plusMonths(monthsToAdd);
         }
 
-        // Return the *most recent past due date*
         return dueDate.minusMonths(monthsToAdd).atStartOfDay();
     }
 
