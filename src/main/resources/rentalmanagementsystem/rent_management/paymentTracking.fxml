@@ -44,9 +44,6 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
-                                 <children>
-                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
-                                 </children>
                               </AnchorPane>
                               <Label layoutX="50.0" layoutY="7.0" text="Total Rent Collected">
                                  <font>
@@ -67,9 +64,6 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
-                                 <children>
-                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
-                                 </children>
                               </AnchorPane>
                               <Label layoutX="78.0" layoutY="6.0" text="Total Overdue">
                                  <font>
@@ -90,9 +84,6 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
-                                 <children>
-                                    <Label layoutX="108.0" layoutY="54.0" text="Label" />
-                                 </children>
                               </AnchorPane>
                               <Label layoutX="61.0" layoutY="6.0" text="Total Paid Tenants">
                                  <font>
@@ -115,12 +106,12 @@
                      </effect>
                      <children>
                         <BarChart fx:id="revenueChart" layoutX="20.0" layoutY="20.0" prefHeight="277.0" prefWidth="886.0" styleClass="bar" stylesheets="@system.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-                           <xAxis>
-                              <CategoryAxis fx:id="monthAxis" side="BOTTOM" styleClass="bar" />
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis fx:id="revenueAxis" side="LEFT" />
-                           </yAxis>
+                          <xAxis>
+                            <CategoryAxis fx:id="monthAxis" side="BOTTOM" styleClass="bar" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="revenueAxis" side="LEFT" />
+                          </yAxis>
                         </BarChart>
                      </children>
                      <padding>
@@ -128,14 +119,14 @@
                      </padding>
                   </AnchorPane>
                   <TableView fx:id="paymentHistoryTable" layoutX="91.0" layoutY="747.0" prefHeight="325.0" prefWidth="1088.0">
-                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="199.6666717529297" text="NAME" />
-                        <TableColumn fx:id="idColumn" prefWidth="172.33334350585938" text="ID#" />
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="199.6666717529297" text="NAME" />
+                      <TableColumn fx:id="idColumn" prefWidth="172.33334350585938" text="ID#" />
                         <TableColumn fx:id="unitColumn" prefWidth="103.66665649414062" text="UNIT NO." />
                         <TableColumn fx:id="amountPaidColumn" prefWidth="194.33334350585938" text="AMOUNT PAID" />
                         <TableColumn fx:id="paymentDateColumn" prefWidth="186.6666259765625" text="PAYMENT DATE" />
                         <TableColumn fx:id="modeOfPaymentColumn" prefWidth="236.66668701171875" text="MODE OF PAYMENT" />
-                     </columns>
+                    </columns>
                   </TableView>
                   <Button layoutX="1086.0" layoutY="705.0" mnemonicParsing="false" onAction="#showAddPayment" text="Add Cash Payment" />
                   <AnchorPane fx:id="addPaymentPane" layoutX="107.0" layoutY="168.0" prefHeight="519.0" prefWidth="993.0" style="-fx-background-color: white;" visible="false">
@@ -163,42 +154,26 @@
             <Insets left="30.0" />
          </padding>
       </ScrollPane>
+      <AnchorPane fx:id="drawerPane" prefHeight="800.0" prefWidth="217.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="40.0" layoutY="72.0" prefHeight="17.0" prefWidth="129.0" text="WELCOME">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
-            <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button fx:id="burger1" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
-                  <AnchorPane fx:id="drawerPane" layoutX="28.0" layoutY="20.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox layoutX="28.0" layoutY="77.0" prefHeight="338.0" prefWidth="132.0" spacing="20.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="133.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="DASHBOARD" />
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Payment Tracking" />
-                              <Button mnemonicParsing="false" onAction="#linkAccount" prefHeight="38.0" prefWidth="200.0" text="room account" />
-                              <Button mnemonicParsing="false" onAction="#overdueButton" prefHeight="38.0" prefWidth="200.0" text="overdue" />
-                              <Button mnemonicParsing="false" onAction="#leaseButton" prefHeight="38.0" prefWidth="200.0" text="lease management" />
-                              <Button mnemonicParsing="false" onAction="#unitOverviewButton" prefHeight="38.0" prefWidth="200.0" text="units overview" />
-                           </children>
-                        </VBox>
-                        <Button layoutX="3.0" layoutY="748.0" mnemonicParsing="false" onAction="#logOutButton" prefHeight="38.0" prefWidth="132.0" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="34.0" layoutY="83.0" prefHeight="600.0" prefWidth="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="24.0">
-                                 <image>
-                                    <Image url="@../../../../../../Project_System/src/main/resources/images/menu.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
+            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/burger.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>
