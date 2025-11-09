@@ -12,9 +12,9 @@ public class EmailSender {
     public static void sendOTP(String recipientEmail, String roomNo, String otp) {
         // Sender email credentials
         final String senderEmail = "brotres091205@gmail.com";
-        final String senderPassword = "lbynbsxztcuflcfq"; // Use app password (not your real Gmail password)
+        final String senderPassword = "lbynbsxztcuflcfq"; // wag email password mo bobo
 
-        // SMTP server configuration for Gmail
+        // SMTP server 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -51,11 +51,11 @@ public class EmailSender {
             message.setText(emailBody);
 
             Transport.send(message);
-            System.out.println("✅ OTP email sent successfully to " + recipientEmail);
+            System.out.println("OTP email sent successfully to " + recipientEmail);
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            System.out.println("❌ Failed to send OTP email.");
+            System.out.println("Failed to send OTP email.");
         }
     }
 
