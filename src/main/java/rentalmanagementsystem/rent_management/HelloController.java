@@ -1,5 +1,6 @@
 package rentalmanagementsystem.rent_management;
 
+import eu.hansolo.toolbox.time.Times;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -139,16 +140,31 @@ public class HelloController {
                 return;
             }
 
+            double baseMonthlyRent = selectedRoom.getPrice();
+            double rentAmount;
+
+            switch (billingPeriod.toLowerCase()) {
+                case "monthly" -> rentAmount = baseMonthlyRent;
+                case "quarterly" -> rentAmount = baseMonthlyRent * 3;
+                case "semi-annual" -> rentAmount = baseMonthlyRent * 6;
+                case "annual" -> rentAmount = baseMonthlyRent * 12;
+                default -> rentAmount = baseMonthlyRent;
+            }
+
+            double advanceBalance = 10000;
+            double currentBalance = 0.0;
 
             Room room = new Room(unitId, selectedRoom.getRoomNo(), start, end, "occupied",
                     selectedRoom.getPrice(), selectedRoom.getAreaSize(), selectedRoom.getCapacity(), otpCode);
-            Billing billing = new Billing(0, unitId, 0.0, billingDropDown.getValue(), "Paid");
+            Billing billing = new Billing(0, unitId, rentAmount, billingDropDown.getValue(), "Paid", currentBalance, advanceBalance);
 
             RoomAccountDAO dao = new RoomAccountDAO();
-
             int billingId = dao.linkTenant(room, billing);
 
             if (billingId > 0) {
+
+                recordAdvancePayment(billingId, (rentAmount + 10000), billingDropDown.getValue());
+
                 AlertMessage.showAlert(AlertType.INFORMATION, "Success", "Tenant linked with Billing ID: " + billingId);
                 new Thread(() -> {
                     EmailSender.sendOTP(tenantEmail, selectedRoom.getRoomNo(), otpCode);
@@ -161,6 +177,27 @@ public class HelloController {
         } catch (Exception e){
             e.printStackTrace();
             AlertMessage.showAlert(AlertType.ERROR, "Error", "Something went wrong: " + e.getMessage());
+        }
+    }
+
+    private void recordAdvancePayment(int tenantId, double totalAdvanceAmount, String billingPeriod){
+        try (Connection conn = DbConn.connectDB()){
+            String insertQuery = """
+                    INSERT INTO paymentTracking (tenantId, modeOfPayment, amountPaid, paymentStatus)
+                    VALUES ()
+                    """;
+            PreparedStatement stmt = conn.prepareStatement(insertQuery);
+
+            stmt.setInt(1, tenantId);
+            stmt.setString(2, "cash");
+            stmt.setDouble(3, totalAdvanceAmount);
+            stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setString(5, "paid");
+            stmt.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+            AlertMessage.showAlert(AlertType.ERROR, "Database Error", "Failed to record advance payment: " + e.getMessage());
         }
     }
 

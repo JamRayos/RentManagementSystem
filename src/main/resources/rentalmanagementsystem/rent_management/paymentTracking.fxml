@@ -44,6 +44,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label fx:id="rentCollectedLabel" layoutX="108.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="50.0" layoutY="7.0" text="Total Rent Collected">
                                  <font>
@@ -64,6 +67,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label fx:id="totalOverdueLabel" layoutX="108.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="78.0" layoutY="6.0" text="Total Overdue">
                                  <font>
@@ -84,6 +90,9 @@
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN" height="18.0" radius="7.75" width="15.0" />
                                  </effect>
+                                 <children>
+                                    <Label fx:id="totalPaidLabel" layoutX="104.0" layoutY="54.0" text="Label" />
+                                 </children>
                               </AnchorPane>
                               <Label layoutX="61.0" layoutY="6.0" text="Total Paid Tenants">
                                  <font>

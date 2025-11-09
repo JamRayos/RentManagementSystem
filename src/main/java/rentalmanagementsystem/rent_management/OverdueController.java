@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OverdueController {
@@ -35,131 +36,86 @@ public class OverdueController {
     }
     private void loadOverdueTable() {
         ObservableList<OverdueDisplay> data = FXCollections.observableArrayList();
+
         String query = """
-                SELECT
-                        t.name,
-                        t.tenantAccountId,
-                        r.roomNo,
-                        b.rentAmount,
-                        r.startDate,
-                        b.billingPeriod,
-                        t.archived,
+        SELECT 
+            t.name,
+            t.tenantAccountId,
+            r.roomNo,
+            b.currentBalance,
+            b.rentAmount,
+            r.startDate,
+            b.billingPeriod,
+            t.archived
+        FROM tenantAccount t
+        JOIN roomAccount r ON t.unitId = r.unitId
+        JOIN billing b ON b.unitId = r.unitId
+        WHERE b.currentBalance > 0
+        """;
 
-                        TIMESTAMPDIFF(MONTH, r.startDate, CURDATE()) AS monthsElapsed,
-      
-                        CASE
-                            WHEN b.billingPeriod = 'Monthly' THEN 1
-                            WHEN b.billingPeriod = 'Quarterly' THEN 3
-                            WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                            WHEN b.billingPeriod = 'Annual' THEN 12
-                            ELSE 1
-                        END AS periodMonths,
+        try (Connection conn = DbConn.connectDB();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
 
-                        FLOOR(
-                            TIMESTAMPDIFF(MONTH, r.startDate, CURDATE())
-                            /
-                            CASE
-                                WHEN b.billingPeriod = 'Monthly' THEN 1
-                                WHEN b.billingPeriod = 'Quarterly' THEN 3
-                                WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                                WHEN b.billingPeriod = 'Annual' THEN 12
-                                ELSE 1
-                            END
-                        ) AS periodsElapsed,
- 
-                        COALESCE(p.totalPaid, 0) AS totalPaid,
-                  
-                        FLOOR(COALESCE(p.totalPaid, 0) / NULLIF(b.rentAmount, 0)) AS paidPeriods,
-                
-                        ( FLOOR(
-                            TIMESTAMPDIFF(MONTH, r.startDate, CURDATE())
-                            /
-                            CASE
-                                WHEN b.billingPeriod = 'Monthly' THEN 1
-                                WHEN b.billingPeriod = 'Quarterly' THEN 3
-                                WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                                WHEN b.billingPeriod = 'Annual' THEN 12
-                                ELSE 1
-                            END
-                          ) * b.rentAmount
-                        ) - COALESCE(p.totalPaid, 0) AS overdueBalance,
-                
-                        DATE_ADD(
-                            r.startDate,
-                            INTERVAL FLOOR(COALESCE(p.totalPaid, 0) / NULLIF(b.rentAmount, 0))
-                            *
-                            CASE
-                                WHEN b.billingPeriod = 'Monthly' THEN 1
-                                WHEN b.billingPeriod = 'Quarterly' THEN 3
-                                WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                                WHEN b.billingPeriod = 'Annual' THEN 12
-                                ELSE 1
-                            END MONTH
-                        ) AS firstMissedDueDate,
-                
-                        CASE
-                            WHEN (\s
-                                FLOOR(
-                                    TIMESTAMPDIFF(MONTH, r.startDate, CURDATE())
-                                    /
-                                    CASE
-                                        WHEN b.billingPeriod = 'Monthly' THEN 1
-                                        WHEN b.billingPeriod = 'Quarterly' THEN 3
-                                        WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                                        WHEN b.billingPeriod = 'Annual' THEN 12
-                                        ELSE 1
-                                    END
-                                )
-                                - FLOOR(COALESCE(p.totalPaid, 0) / NULLIF(b.rentAmount, 0))
-                            ) > 0
-                            THEN DATEDIFF(
-                                    CURDATE(),
-                                    DATE_ADD(
-                                        r.startDate,
-                                        INTERVAL FLOOR(COALESCE(p.totalPaid, 0) / NULLIF(b.rentAmount, 0))
-                                        *
-                                        CASE
-                                            WHEN b.billingPeriod = 'Monthly' THEN 1
-                                            WHEN b.billingPeriod = 'Quarterly' THEN 3
-                                            WHEN b.billingPeriod = 'Semi-Annual' THEN 6
-                                            WHEN b.billingPeriod = 'Annual' THEN 12
-                                            ELSE 1
-                                        END MONTH
-                                    )
-                                 )
-                            ELSE 0
-                        END AS daysOverdue
-                
-                    FROM tenantAccount t
-                    JOIN roomAccount r ON t.unitId = r.unitId
-                    JOIN billing b ON b.unitId = r.unitId
-                    LEFT JOIN (
-                        SELECT tenantId, SUM(amountPaid) AS totalPaid
-                        FROM paymentTracking
-                        GROUP BY tenantId
-                    ) p ON t.tenantAccountId = p.tenantId
-                    HAVING overdueBalance > 0
-                """;
+            while (rs.next()) {
+                String name = rs.getString("name");
+                int tenantAccountId = rs.getInt("tenantAccountId");
+                String roomNo = rs.getString("roomNo");
+                double currentBalance = rs.getDouble("currentBalance");
+                double rentAmount = rs.getDouble("rentAmount");
+                LocalDateTime startDate = rs.getDate("startDate").toLocalDate().atStartOfDay();
+                String billingPeriod = rs.getString("billingPeriod");
+                boolean archived = rs.getBoolean("archived");
 
-        try (Connection conn = DbConn.connectDB()){
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+                // Compute the most recent due date
+                LocalDateTime dueDate = calculateDueDate(startDate.toLocalDate(), billingPeriod);
+                LocalDateTime now = LocalDateTime.now();
 
-            while (rs.next()){
+                // Only consider overdue if current balance is greater than 0 AND due date has passed
+                int daysOverdue = 0;
+                if (currentBalance > 0 && now.toLocalDate().isAfter(dueDate.toLocalDate())) {
+                    daysOverdue = (int) java.time.temporal.ChronoUnit.DAYS.between(dueDate, now);
+                }
+
                 data.add(new OverdueDisplay(
-                        rs.getString("name"),
-                        rs.getInt("tenantAccountId"),
-                        rs.getString("roomNo"),
-                        rs.getDouble("overdueBalance"),
-                        rs.getDate("startDate").toLocalDate().atStartOfDay(),
-                        rs.getInt("daysOverdue"),
-                        rs.getBoolean("archived")
+                        name,
+                        tenantAccountId,
+                        roomNo,
+                        currentBalance, // overdueBalance shown from currentBalance
+                        dueDate,
+                        daysOverdue,
+                        archived
                 ));
             }
+
             overdueTableView.setItems(data);
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    private LocalDateTime calculateDueDate(LocalDate startDate, String billingPeriod) {
+        int monthsToAdd;
+        switch (billingPeriod.toLowerCase()) {
+            case "monthly" -> monthsToAdd = 1;
+            case "quarterly" -> monthsToAdd = 3;
+            case "semi-annual" -> monthsToAdd = 6;
+            case "annual" -> monthsToAdd = 12;
+            default -> monthsToAdd = 1;
+        }
+
+        LocalDate dueDate = startDate;
+        LocalDate today = LocalDate.now();
+
+        // Keep adding periods until dueDate is the next due
+        while (!dueDate.isAfter(today)) {
+            dueDate = dueDate.plusMonths(monthsToAdd);
+        }
+
+        // Return the *most recent past due date*
+        return dueDate.minusMonths(monthsToAdd).atStartOfDay();
+    }
+
+
 }

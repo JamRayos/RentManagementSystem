@@ -52,8 +52,11 @@ public class PaymentTrackingController {
     private int tenantId;
     private int unitId;
 
-    @FXML
-    public void initialize() {
+    @FXML private Label rentCollectedLabel;
+    @FXML private Label totalOverdueLabel;
+    @FXML private Label totalPaidLabel;
+
+    @FXML public void initialize() {
 
         //navdrawer initialization
         drawerPane.setTranslateX(-350);
@@ -68,6 +71,7 @@ public class PaymentTrackingController {
 
         loadDataFromDatabase();
         loadMonthlyRevenueData();
+        loadMonthlySummary();
 
         tenantNameField.textProperty().addListener((obs, oldText, newText) -> {
             if (newText.length() >= 2) {
@@ -184,9 +188,7 @@ public class PaymentTrackingController {
 
                 LocalDate dueDate = calculateDueDate(startDate, billingPeriod, today);
 
-                if (today.isBefore(dueDate)) {
-                    return "advance";
-                } else if (today.isEqual(dueDate)) {
+                if (today.isEqual(dueDate) || today.isBefore(dueDate)) {
                     return "Paid";
                 } else {
                     return "late";
@@ -234,6 +236,13 @@ public class PaymentTrackingController {
             return;
         }
 
+        double currentBalance = getCurrentBalance(unitId);
+
+        if (amount > currentBalance) {
+            AlertMessage.showAlert(Alert.AlertType.WARNING, "Warning", "Payment exceeds current balance. Tenant only owes " + currentBalance);
+            return;
+        }
+
         String paymentstatus = calculatePaymentStatus(unitId);
 
         PaymentHistory history = new PaymentHistory(
@@ -246,8 +255,28 @@ public class PaymentTrackingController {
         );
 
         paymentTrackingDAO(history);
+        updateBillingBalance(unitId, amount);
+
         AlertMessage.showAlert(Alert.AlertType.INFORMATION, "Success", "Payment recorded successfully");
         addPaymentPane.setVisible(false);
+    }
+
+    private double getCurrentBalance(int unitId) {
+        String sql = "SELECT currentBalance FROM billing WHERE unitId = ?";
+        try (Connection conn = DbConn.connectDB()){
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, unitId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()){
+                return rs.getDouble("currentBalance");
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0.0;
     }
 
     private void loadDataFromDatabase() {
@@ -335,46 +364,72 @@ public class PaymentTrackingController {
         revenueChart.getData().add(series);
     }
 
+    private void updateBillingBalance(int unitId, double paymentAmount) {
+        String sql = "UPDATE billing SET currentBalance = currentBalance - ? WHERE unitId = ?";
 
+        try (Connection conn = DbConn.connectDB();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setDouble(1, paymentAmount);
+            stmt.setInt(2, unitId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadMonthlySummary() {
+        LocalDate now = LocalDate.now();
+        int currentMonth = now.getMonthValue();
+        int currentYear = now.getYear();
+
+        double rentCollected = 0.0;
+        double totalOverdue = 0.0;
+        int paidTenants = 0;
+
+        String sql = """
+                SELECT b.rentAmount, b.currentBalance, pt.amountPaid, pt.paymentDate
+                FROM billing b 
+                LEFT JOIN tenantAccount t ON t.unitId = b.unitId
+                LEFT JOIN paymentTracking pt ON t.tenantAccountId = pt.tenantId
+                WHERE YEAR(pt.paymentDate) = ? AND MONTH(pt.paymentDate) = ?
+                """;
+
+        try (Connection conn = DbConn.connectDB()){
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, currentYear);
+            stmt.setInt(2, currentMonth);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                double rentAmount = rs.getDouble("rentAmount");
+                double currentBalance = rs.getDouble("currentBalance");
+                double paid = rs.getDouble("amountPaid");
+
+                rentCollected += paid;
+
+                if (paid >= rentAmount || currentBalance <= 0) {
+                    paidTenants++;
+                }
+
+                if (currentBalance > rentAmount){
+                    totalOverdue += currentBalance;
+                }
+            }
+
+            rentCollectedLabel.setText(String.format("₱%.2f", rentCollected));
+            totalPaidLabel.setText(String.valueOf(paidTenants));
+            totalOverdueLabel.setText(String.format("₱%.2f", totalOverdue));
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void showAddPayment() {
         addPaymentPane.setVisible(true);
-    }
-
-    public class PaymentDisplay {
-        private String name;
-        private int tenantAccountId;
-        private String roomNo;
-        private double amountPaid;
-        private LocalDateTime paymentDate;
-        private String modeOfPayment;
-
-        PaymentDisplay(String name, int tenantAccountId, String roomNo, double amountPaid, LocalDateTime paymentDate, String modeOfPayment){
-            this.name = name;
-            this.tenantAccountId = tenantAccountId;
-            this.roomNo = roomNo;
-            this.amountPaid = amountPaid;
-            this.paymentDate = paymentDate;
-            this.modeOfPayment = modeOfPayment;
-        }
-
-//        getters
-        public String getName() {return name;}
-        public int getTenantAccountId() {return tenantAccountId;}
-        public String getRoomNo() {return roomNo;}
-        public double getAmountPaid() {return amountPaid;}
-        public LocalDateTime getPaymentDate() {return paymentDate;}
-        public String getModeOfPayment() {return modeOfPayment;}
-
-//        setters
-        public void setName(String name) {this.name = name;}
-        public void setTenantAccountId(int tenantAccountId) {this.tenantAccountId = tenantAccountId;}
-        public void setRoomNo(String roomNo) {this.roomNo = roomNo;}
-        public void setAmountPaid(double amountPaid) {this.amountPaid = amountPaid;}
-        public void setPaymentDate(LocalDateTime paymentDate) {this.paymentDate = paymentDate;}
-        public void setModeOfPayment(String modeOfPayment) {this.modeOfPayment = modeOfPayment;}
-
     }
 
     @FXML
@@ -401,5 +456,4 @@ public class PaymentTrackingController {
     private void overdueButton(ActionEvent event) throws IOException {
         SceneManager.switchScene("overdueTenants.fxml");
     }
-
 }

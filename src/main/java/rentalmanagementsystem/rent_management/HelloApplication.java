@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SceneManager.setStage(stage);
-        SceneManager.switchScene("login.fxml");
+        SceneManager.switchScene("firstPg.fxml");
         stage.setTitle("The Pavilion");
         stage.show();
     }
