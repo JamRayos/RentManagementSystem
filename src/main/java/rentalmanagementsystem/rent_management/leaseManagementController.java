@@ -3,23 +3,34 @@ package rentalmanagementsystem.rent_management;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 
 public class leaseManagementController {
-    @FXML
-    TableView<leaseManagementDisplay> leaseManagementTable;
-    @FXML
-    TableColumn<leaseManagementDisplay, String> nameColumn;
+    @FXML TableView<leaseManagementDisplay> leaseManagementTable;
+    @FXML TableColumn<leaseManagementDisplay, String> nameColumn;
     @FXML TableColumn <leaseManagementDisplay, Integer> idColumn;
     @FXML TableColumn <leaseManagementDisplay, String> unitNoColumn;
     @FXML TableColumn <leaseManagementDisplay, String> paymentPeriodColumn;
     @FXML TableColumn <leaseManagementDisplay, LocalDateTime> leaseStartColumn;
     @FXML TableColumn <leaseManagementDisplay, LocalDateTime> leaseEndColumn;
+
+    @FXML private TextArea sectionContent;
+    @FXML private Button editBtn, saveBtn;
+    @FXML private Button btnFinancialTerms, btnTermsRenewal, btnOccupancy, btnViolations;
+
+    private int currentLeaseId = -1;
+    private String currentSection = null;
+    private String financialTerms, termsRenewal, occupancy, violations;
+
+    @FXML private Label nameLabel;
+    @FXML private Label unitLabel;
+    @FXML private Label startLabel;
+    @FXML private Label endLabel;
+    @FXML private Label payPeriodLabel;
 
     ObservableList<leaseManagementDisplay> data = FXCollections.observableArrayList();
 
@@ -34,6 +45,22 @@ public class leaseManagementController {
         leaseEndColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
         loadData();
+
+        leaseManagementTable.setOnMouseClicked(event -> {
+            leaseManagementDisplay selected = leaseManagementTable.getSelectionModel().getSelectedItem();
+            if (selected != null) loadLeaseDetails(selected.getTenantAccountId());
+        });
+
+        leaseManagementTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                showTenantDetails(newValue));
+
+        btnFinancialTerms.setOnAction(e -> showSection("Financial Terms"));
+        btnTermsRenewal.setOnAction(e -> showSection("Terms & Renewal"));
+        btnOccupancy.setOnAction(e -> showSection("Occupancy"));
+        btnViolations.setOnAction(e -> showSection("Violations"));
+
+        editBtn.setOnAction(e -> toggleEditMode(true));
+        saveBtn.setOnAction(e -> publishNewVersion());
     }
 
     private void loadData() {
@@ -44,7 +71,6 @@ public class leaseManagementController {
                     SELECT p.name, p.tenantAccountId, r.roomNo, b.billingPeriod, r.startDate, r.endDate FROM tenantAccount p
                     JOIN roomAccount r ON  p.unitId = r.unitId
                     JOIN billing b ON p.unitId = b.unitId
-                    JOIN paymentTracking pt ON p.tenantAccountId = pt.tenantId;
                     """;
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -68,6 +94,91 @@ public class leaseManagementController {
             conn.close();
         } catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+
+    private void loadLeaseDetails(int tenantId) {
+        try (Connection conn = DbConn.connectDB()){
+            String query =  """
+                    SELECT l.leaseAgreementId, l.financialTerms, l.TermsRenewal, l.Occupancy, l.Violations
+                    FROM leaseAgreement l
+                    JOIN tenantAccount t ON t.leaseAgreementId = l.leaseAgreementId
+                    WHERE t.tenantAccountId = ?
+                    """;
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, tenantId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                currentLeaseId = rs.getInt("leaseAgreementId");
+                financialTerms = rs.getString("financialTerms");
+                termsRenewal = rs.getString("TermsRenewal");
+                occupancy = rs.getString("Occupancy");
+                violations = rs.getString("Violations");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void showSection(String section){
+        currentSection = section;
+        sectionContent.setEditable(false);
+        saveBtn.setDisable(true);
+
+        switch (section){
+            case "Financial Terms" -> sectionContent.setText(financialTerms);
+            case "Terms & Renewal" -> sectionContent.setText(termsRenewal);
+            case "Occupancy" -> sectionContent.setText(occupancy);
+            case "Violations" -> sectionContent.setText(violations);
+        }
+    }
+
+    private void toggleEditMode(boolean editable) {
+        sectionContent.setEditable(editable);
+        saveBtn.setDisable(!editable);
+    }
+
+    private void publishNewVersion() {
+        String updateText = sectionContent.getText();
+
+        switch (currentSection){
+            case "Financial Terms" -> financialTerms = updateText;
+            case "Terms & Renewal" -> termsRenewal = updateText;
+            case "Occupancy" -> occupancy = updateText;
+            case "Violations" -> violations = updateText;
+        }
+
+        try (Connection conn = DbConn.connectDB()){
+            String insert = """
+                    INSERT INTO leaseAgreement (financialTerms, TermsRenewal, Occupancy, Violations, dateCreated) VALUES
+                    (?, ?, ?, ?, NOW())
+                    """;
+            PreparedStatement stmt = conn.prepareStatement(insert);
+            stmt.setString(1, financialTerms);
+            stmt.setString(2, termsRenewal);
+            stmt.setString(3, occupancy);
+            stmt.setString(4, violations);
+            stmt.executeUpdate();
+
+            System.out.println("New lease version published successfully:)");
+            toggleEditMode(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showTenantDetails(leaseManagementDisplay tenant){
+        if (tenant != null) {
+            nameLabel.setText(tenant.getName());
+            unitLabel.setText(tenant.getRoomNo());
+            payPeriodLabel.setText(tenant.getBillingPeriod());
+
+            if (tenant.getStartDate() != null)
+                startLabel.setText(tenant.getStartDate().toLocalDate().toString());
+            if (tenant.getEndDate() != null)
+                endLabel.setText(tenant.getEndDate().toLocalDate().toString());
         }
     }
 }

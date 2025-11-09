@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.leaseManagementController">
    <children>
-      <ScrollPane layoutX="-6.0" prefHeight="1390.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane layoutX="-6.0" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <AnchorPane prefHeight="1353.0" prefWidth="1236.0">
                <children>
@@ -37,7 +37,7 @@
                               <InnerShadow radius="8.5" width="15.0" />
                            </effect>
                            <children>
-                              <VBox layoutX="72.0" layoutY="-12.0" prefHeight="73.0" prefWidth="344.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox layoutX="72.0" layoutY="-12.0" prefHeight="58.0" prefWidth="407.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label text="Lease Summary">
                                        <font>
@@ -46,6 +46,70 @@
                                     </Label>
                                     <Separator prefWidth="303.0" />
                                  </children>
+                              </VBox>
+                              <VBox layoutX="129.0" layoutY="40.0" prefHeight="187.0" prefWidth="213.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                                 <children>
+                                    <Label text="Tenant:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="52.0" text="Unit No:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="87.0" text="Lease Start:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="87.0" text="Lease End:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="20.0" prefWidth="112.0" text="Payment Period:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox layoutX="139.0" layoutY="50.0" prefHeight="187.0" prefWidth="213.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Label fx:id="nameLabel">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="unitLabel" prefHeight="17.0" prefWidth="52.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="startLabel" prefHeight="17.0" prefWidth="87.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="endLabel" prefHeight="17.0" prefWidth="87.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="payPeriodLabel" prefHeight="17.0" prefWidth="87.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </AnchorPane>
@@ -74,22 +138,22 @@
                                  </font>
                               </Label>
                               <Separator prefWidth="200.0" />
-                              <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Financial Terms">
+                              <Button fx:id="btnFinancialTerms" mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Financial Terms">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Terms &amp; Renewal Conditions">
+                              <Button fx:id="btnTermsRenewal" mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Terms &amp; Renewal Conditions">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Occupancy and Use Rules">
+                              <Button fx:id="btnOccupancy" mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="Occupancy and Use Rules">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="ButtoViolations &amp; Enforcement">
+                              <Button fx:id="btnViolations" mnemonicParsing="false" prefHeight="57.0" prefWidth="232.0" style="-fx-background-radius: 20;" text="ButtoViolations &amp; Enforcement">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
@@ -100,7 +164,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="48.0" layoutY="823.0" prefHeight="410.0" prefWidth="840.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                      <children>
-                        <TextArea layoutX="34.0" layoutY="48.0" prefHeight="288.0" prefWidth="774.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextArea fx:id="sectionContent" layoutX="34.0" layoutY="48.0" prefHeight="288.0" prefWidth="774.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <effect>
                               <InnerShadow />
                            </effect>
@@ -116,7 +180,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="41.0" layoutY="1263.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="204.0" style="-fx-background-radius: 20;" text="PUBLISH">
+                  <Button fx:id="editBtn" layoutX="41.0" layoutY="1263.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="204.0" style="-fx-background-radius: 20;" text="EDIT">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -131,6 +195,11 @@
                         <Separator layoutX="18.0" layoutY="79.0" prefHeight="3.0" prefWidth="620.0" />
                      </children>
                   </AnchorPane>
+                  <Button fx:id="saveBtn" layoutX="264.0" layoutY="1263.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="204.0" style="-fx-background-radius: 20;" text="PUBLISH">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>

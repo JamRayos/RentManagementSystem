@@ -10,6 +10,9 @@ module rentalmanagementsystem.rent_management {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires jakarta.mail;
+    requires com.github.librepdf.openpdf;
+    requires org.apache.pdfbox;
+    requires javafx.swing;
 
     opens rentalmanagementsystem.rent_management to javafx.fxml;
     exports rentalmanagementsystem.rent_management;

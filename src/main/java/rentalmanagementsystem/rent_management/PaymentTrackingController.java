@@ -393,8 +393,13 @@ public class PaymentTrackingController {
     }
 
     @FXML
-    private void createAccount(ActionEvent event) throws IOException {
+    private void linkAccount(ActionEvent event) throws IOException {
         SceneManager.switchScene("roomAccount.fxml");
+    }
+
+    @FXML
+    private void overdueButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("overdueTenants.fxml");
     }
 
 }

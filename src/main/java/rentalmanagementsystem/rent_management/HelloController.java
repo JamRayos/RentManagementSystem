@@ -188,4 +188,15 @@ public class HelloController {
     private void leaseButton(ActionEvent event) throws IOException {
         SceneManager.switchScene("leaseManagement.fxml");
     }
+
+    @FXML
+    private void paymentTrackingButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("paymentTracking.fxml");
+    }
+
+    @FXML
+    private void overdueButton(ActionEvent event) throws IOException {
+        SceneManager.switchScene("overdueTenants.fxml");
+    }
+
 }

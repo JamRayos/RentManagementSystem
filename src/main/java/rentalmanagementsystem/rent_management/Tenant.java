@@ -28,6 +28,14 @@ public class Tenant {
         this.password = password;
         this.archived = archived;
     }
+    public Tenant(int tenantId, String name, String username, String email, String contact, int unitId) {
+        this.tenantId = tenantId;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.contact = contact;
+        this.unitId = unitId;
+    }
 
 //    getters
     public int getTenantId() {return tenantId;}
