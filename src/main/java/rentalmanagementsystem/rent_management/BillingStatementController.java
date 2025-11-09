@@ -227,7 +227,7 @@ public class BillingStatementController {
             File outFile = new File(outputPath);
             outFile.getParentFile().mkdirs();
             doc.save(outFile);
-            System.out.println("✅ PDF generated and saved to: " + outFile.getAbsolutePath());
+            System.out.println("PDF generated and saved to: " + outFile.getAbsolutePath());
 
         } catch (Exception e) {
             e.printStackTrace();
