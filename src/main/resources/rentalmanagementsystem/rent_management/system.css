@@ -59,3 +59,8 @@
     -fx-background-color: transparent;
 }
 
+.loginBtn {
+    -fx-background-radius:  20;
+    -fx-background-color: #8BAC7D;
+}
+

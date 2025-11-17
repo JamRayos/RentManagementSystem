@@ -169,30 +169,12 @@ public class TenantOverviewController {
 
 
 
-    @FXML
-    private void complaint (ActionEvent event) throws IOException {
-        SceneManager.switchScene("adminComplaint.fxml");
-    }
-
-    @FXML
-    private void dashboard (ActionEvent event) throws IOException {
-        SceneManager.switchScene("dashboardAdmin.fxml");
-    }
-
-    @FXML
-    private void billingStatement (ActionEvent event) throws IOException {
-        SceneManager.switchScene("billingStatement.fxml");
-    }
-
-    @FXML private void paymentTracking(ActionEvent event) throws IOException {
-        SceneManager.switchScene("paymentTracking.fxml");
-    }
-
-    @FXML private void overdue(ActionEvent event) throws IOException {
-        SceneManager.switchScene("overdueTenants.fxml");
-    }
-
-    @FXML private void leaseManagement(ActionEvent event) throws IOException {
-        SceneManager.switchScene("leaseManagement.fxml");
-    }
+    @FXML private void dashboard (ActionEvent event) throws IOException {SceneManager.switchScene("dashboardAdmin.fxml");}
+    @FXML private void complaints (ActionEvent event) throws IOException {SceneManager.switchScene("adminComplaint.fxml");}
+    @FXML private void tenantOverview (ActionEvent event) throws IOException {SceneManager.switchScene("overviewOfTenants.fxml");}
+    @FXML private void billing (ActionEvent event) throws IOException {SceneManager.switchScene("billingStatement.fxml");}
+    @FXML private void linkAccount (ActionEvent event) throws IOException {SceneManager.switchScene("roomAccount.fxml");}
+    @FXML private void paymentTracking (ActionEvent event) throws IOException {SceneManager.switchScene("paymentTracking.fxml");}
+    @FXML private void overdue (ActionEvent event) throws IOException {SceneManager.switchScene("overdueTenants.fxml");}
+    @FXML private void lease (ActionEvent event) throws IOException {SceneManager.switchScene("leaseManagement.fxml");}
 }

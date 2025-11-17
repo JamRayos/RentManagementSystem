@@ -20,28 +20,33 @@
             </font>
         </Text>
         <Line endX="904.6666259765625" layoutX="332.0" layoutY="77.0" startX="-219.73333740234375" startY="7.62939453125E-6" />
-        <HBox alignment="CENTER" layoutX="107.0" layoutY="86.0" prefHeight="60.0" prefWidth="640.0" spacing="10.0">
+        <HBox alignment="CENTER" layoutX="107.0" layoutY="86.0" prefHeight="60.0" prefWidth="839.0" spacing="10.0">
             <children>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 20;" text="Water">
+                <Button mnemonicParsing="false" onAction="#filterAll" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-background-color: #BABAB8;" text="All">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Electricity">
+                <Button mnemonicParsing="false" onAction="#filterElectricity" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Electricity">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Damages">
+                <Button mnemonicParsing="false" onAction="#filterWater" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Water">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Others..">
+                <Button mnemonicParsing="false" onAction="#filterDamages" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #BABAB8; -fx-background-radius: 20;" text="Damages">
                     <font>
                         <Font name="System Bold" size="25.0" />
                     </font>
                 </Button>
+            <Button mnemonicParsing="false" onAction="#filterOther" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-background-color: #BABAB8;" text="Others">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Button>
             </children>
             <opaqueInsets>
                 <Insets />
@@ -51,12 +56,12 @@
          <padding>
             <Insets top="20.0" />
          </padding></TilePane>
-      <AnchorPane layoutX="363.0" layoutY="638.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="393.0" layoutY="668.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="burger" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane layoutX="66.0" layoutY="186.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="burger11" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="drawerPane" layoutX="-4.0" layoutY="-2.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #E0EDDB;">
                      <children>
                         <VBox fillWidth="false" layoutX="1.0" layoutY="230.0" prefHeight="366.0" prefWidth="227.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
@@ -76,7 +81,12 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#billingStatement" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#billing" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#linkAccount" prefWidth="200.0" style="-fx-background-color: none;" text="Link Account">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -91,7 +101,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#leaseManagement" prefWidth="200.0" style="-fx-background-color: none;" text="Lease Management" textAlignment="JUSTIFY">
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#lease" prefWidth="200.0" style="-fx-background-color: none;" text="Lease Management" textAlignment="JUSTIFY">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -115,7 +125,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="44.0" layoutY="93.0" prefHeight="600.0" prefWidth="39.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
+                        <Button fx:id="menuButton1" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="24.0">
                                  <image>

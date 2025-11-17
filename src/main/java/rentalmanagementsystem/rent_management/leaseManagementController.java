@@ -1,15 +1,26 @@
 package rentalmanagementsystem.rent_management;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 
 public class leaseManagementController {
+
+    @FXML
+    AnchorPane drawerPane;
+    @FXML Button burger;
+    private boolean drawerOpen = true;
+
     @FXML TableView<leaseManagementDisplay> leaseManagementTable;
     @FXML TableColumn<leaseManagementDisplay, String> nameColumn;
     @FXML TableColumn <leaseManagementDisplay, Integer> idColumn;
@@ -37,6 +48,9 @@ public class leaseManagementController {
     @FXML
     public void initialize(){
 
+        drawerPane.setTranslateX(-350);
+        drawerOpen = false;
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("tenantAccountId"));
         unitNoColumn.setCellValueFactory(new PropertyValueFactory<>("roomNo"));
@@ -61,6 +75,23 @@ public class leaseManagementController {
 
         editBtn.setOnAction(e -> toggleEditMode(true));
         saveBtn.setOnAction(e -> publishNewVersion());
+    }
+
+    @FXML //for the side drawer
+    private void toggleDrawer() {
+
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.millis(300));
+        slide.setNode(drawerPane);
+
+        if (drawerOpen) {
+            slide.setToX(-250);
+            drawerOpen = false;
+        } else {
+            slide.setToX(0);
+            drawerOpen = true;
+        }
+        slide.play();
     }
 
     private void loadData() {
@@ -181,4 +212,13 @@ public class leaseManagementController {
                 endLabel.setText(tenant.getEndDate().toLocalDate().toString());
         }
     }
+
+    @FXML private void dashboard (ActionEvent event) throws IOException {SceneManager.switchScene("dashboardAdmin.fxml");}
+    @FXML private void complaints (ActionEvent event) throws IOException {SceneManager.switchScene("adminComplaint.fxml");}
+    @FXML private void tenantOverview (ActionEvent event) throws IOException {SceneManager.switchScene("overviewOfTenants.fxml");}
+    @FXML private void billing (ActionEvent event) throws IOException {SceneManager.switchScene("billingStatement.fxml");}
+    @FXML private void linkAccount (ActionEvent event) throws IOException {SceneManager.switchScene("roomAccount.fxml");}
+    @FXML private void paymentTracking (ActionEvent event) throws IOException {SceneManager.switchScene("paymentTracking.fxml");}
+    @FXML private void overdue (ActionEvent event) throws IOException {SceneManager.switchScene("overdueTenants.fxml");}
+    @FXML private void lease (ActionEvent event) throws IOException {SceneManager.switchScene("leaseManagement.fxml");}
 }

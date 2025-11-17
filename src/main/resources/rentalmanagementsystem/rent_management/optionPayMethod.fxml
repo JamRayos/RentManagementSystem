@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F3F8F2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.PayMethodController">
+    <children>
+        <Button layoutX="207.0" layoutY="448.0" mnemonicParsing="false" onAction="#ewalletPayMethodButton" prefHeight="122.0" prefWidth="872.0" style="-fx-background-color: #E0EDDB; -fx-background-radius: 30;">
+            <effect>
+                <DropShadow offsetY="5.0">
+                    <color>
+                        <Color red="0.5701754093170166" green="0.5138618350028992" blue="0.5138618350028992" />
+                    </color>
+                </DropShadow>
+            </effect>
+            <graphic>
+                <ImageView fitHeight="72.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/walletIMG.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button layoutX="207.0" layoutY="245.0" mnemonicParsing="false" onAction="#bankPayMethodButton" prefHeight="122.0" prefWidth="872.0" style="-fx-background-color: #E0EDDB; -fx-background-radius: 30;">
+            <effect>
+                <DropShadow offsetY="5.0">
+                    <color>
+                        <Color red="0.5701754093170166" green="0.5138618350028992" blue="0.5138618350028992" />
+                    </color>
+                </DropShadow>
+            </effect>
+            <graphic>
+                <ImageView fitHeight="72.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/bankIMG.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Label layoutX="183.0" layoutY="72.0" style="-fx-font-weight: bold;" text="PAYMENT METHOD">
+            <font>
+                <Font size="50.0" />
+            </font>
+        </Label>
+        <Line endX="800.0" endY="-1.52587890625E-5" layoutX="437.0" layoutY="142.0" startX="-250.0" />
+        <Line endX="800.0" endY="-1.52587890625E-5" layoutX="430.0" layoutY="712.0" startX="-250.0" />
+        <Label layoutX="272.0" layoutY="447.0" prefHeight="125.0" prefWidth="291.0" style="-fx-font-weight: bold;" text="E-WALLET " textAlignment="CENTER" AnchorPane.bottomAnchor="228.0" AnchorPane.topAnchor="447.0">
+            <font>
+                <Font size="35.0" />
+            </font>
+        </Label>
+        <Label layoutX="272.0" layoutY="261.0" prefHeight="91.0" prefWidth="282.0" style="-fx-font-weight: bold;" text="BANK TRANSFER" textAlignment="CENTER" AnchorPane.bottomAnchor="448.0" AnchorPane.topAnchor="261.0">
+            <font>
+                <Font size="35.0" />
+            </font>
+        </Label>
+      <AnchorPane fx:id="bankMethod" layoutX="165.0" layoutY="143.0" prefHeight="610.0" prefWidth="1039.0" style="-fx-background-color: #EAF4F4; -fx-background-radius: 30;" visible="false">
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" offsetY="1.0">
+               <color>
+                  <Color red="0.5701754093170166" green="0.5261804461479187" blue="0.5261804461479187" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label layoutX="48.0" layoutY="36.0" style="-fx-font-weight: bold;" text="BANK TRANSFER" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Line endX="420.0" endY="122.11111450195312" layoutX="577.0" layoutY="120.0" startX="-534.6666870117188" startY="122.11111450195312" stroke="#aaafb4" strokeWidth="1.5" />
+            <Label layoutX="50.0" layoutY="104.0" style="-fx-font-weight: bold;" text="BDO Bank" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="153.0" text="Account Number:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="190.0" text="Account Name:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="153.0" text="pau-3213-1234" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="190.0" text="Paulina Jorge" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="269.0" style="-fx-font-weight: bold;" text="LANDBANK" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="327.0" text="Account Number:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="365.0" text="Account Name:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="441.0" style="-fx-font-weight: bold;" text="BPI Bank" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="505.0" text="Account Number:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="540.0" text="Account Name:" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Line endX="420.0" endY="122.11111450195312" layoutX="577.0" layoutY="295.0" startX="-534.6666870117188" startY="122.11111450195312" stroke="#aaafb4" strokeWidth="1.5" />
+            <Label layoutX="300.0" layoutY="327.0" text="pau-3213-1234" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="365.0" text="Paulina Jorge" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="505.0" text="pau-3213-1234" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="540.0" text="Paulina Jorge" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="960.0" layoutY="18.0" mnemonicParsing="false" onAction="#bankPayMethodCloseButton" prefHeight="45.0" prefWidth="47.0" style="-fx-background-color: none;" text="X" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="eWalletMethod" layoutX="165.0" layoutY="145.0" prefHeight="610.0" prefWidth="1039.0" style="-fx-background-color: #EAF4F4; -fx-background-radius: 30;" visible="false">
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" offsetY="1.0">
+               <color>
+                  <Color red="0.5701754093170166" green="0.5261804461479187" blue="0.5261804461479187" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label layoutX="52.0" layoutY="51.0" style="-fx-font-weight: bold;" text="E-WALLET TRANSFER" textAlignment="CENTER">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Line endX="420.0" endY="122.11111450195312" layoutX="577.0" layoutY="163.0" startX="-534.6666870117188" startY="122.11111450195312" stroke="#aaafb4" strokeWidth="1.5" />
+            <Label layoutX="52.0" layoutY="128.0" style="-fx-font-weight: bold;" text="GCASH" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="183.0" text="Account Number:" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="233.0" text="Account Name:" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="183.0" text="0991 - 496 - 4423" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="233.0" text="Sheilamae Bagasbas" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="303.0" style="-fx-font-weight: bold;" text="PayMaya" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="358.0" text="Account Number:" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="408.0" text="Account Name:" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="358.0" text="09123-123-4143" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="300.0" layoutY="408.0" text="Jamela Ann Rayos" textAlignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Button layoutX="954.0" layoutY="19.0" mnemonicParsing="false" onAction="#ewalletPayMethodCloseButton" prefHeight="45.0" prefWidth="47.0" style="-fx-background-color: none;" text="X" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="403.0" layoutY="678.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutX="66.0" layoutY="186.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="drawerPane" layoutX="-4.0" layoutY="-2.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #E0EDDB;">
+                     <children>
+                        <VBox fillWidth="false" layoutX="1.0" layoutY="230.0" prefHeight="366.0" prefWidth="227.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#dashboardButton" prefWidth="200.0" style="-fx-background-color: none;" text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#billingTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: none;" text="Payment Method">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#complaintsTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Complaint">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#apartmentLeaseButton" prefWidth="200.0" style="-fx-background-color: none;" text="Apartment Lease">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#PaymentHistoryButton" prefWidth="200.0" style="-fx-background-color: none;" text="Payment History">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="263.0" mnemonicParsing="false" onAction="#helpNSupportButton" prefWidth="200.0" style="-fx-background-color: none;" text="Help &amp; Support">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#contactNAboutButton" prefWidth="200.0" style="-fx-background-color: none;" text="Contact &amp; About" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" />
+                           </padding>
+                        </VBox>
+                        <Button layoutY="745.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="usernameLabel" layoutX="24.0" layoutY="83.0" prefHeight="98.0" prefWidth="173.0" style="-fx-font-weight: bold; -fx-text-fill: #3F473A;" text="Welcome User" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="44.0" layoutY="93.0" prefHeight="600.0" prefWidth="39.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../../images/burger.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

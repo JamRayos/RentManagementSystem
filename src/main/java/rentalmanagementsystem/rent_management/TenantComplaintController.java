@@ -1,20 +1,28 @@
 package rentalmanagementsystem.rent_management;
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
+import javafx.util.Duration;
 
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class TenantComplaintController {
+
+    @FXML
+    AnchorPane drawerPane;
+    @FXML
+    Button burger;
+    private boolean drawerOpen = true;
+
     @FXML private TextField titleField;
     @FXML private ComboBox<String> categoryBox;
     @FXML private TextArea descriptionArea;
@@ -22,8 +30,28 @@ public class TenantComplaintController {
     @FXML private AnchorPane complaintsPane;
 
     public void initialize() {
+        drawerPane.setTranslateX(-350);
+        drawerOpen = false;
+
         categoryBox.getItems().addAll("electricity", "water", "damages", "others");
         loadTenantComplaints();
+    }
+
+    @FXML //for the side drawer
+    private void toggleDrawer() {
+
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.millis(300));
+        slide.setNode(drawerPane);
+
+        if (drawerOpen) {
+            slide.setToX(-250);
+            drawerOpen = false;
+        } else {
+            slide.setToX(0);
+            drawerOpen = true;
+        }
+        slide.play();
     }
 
     @FXML private void onSubmitComplaint() {
@@ -92,7 +120,17 @@ public class TenantComplaintController {
             e.printStackTrace();
         }
     }
+
     @FXML private void showAddComplaint() {
         complaintsPane.setVisible(true);
     }
+
+    @FXML private void paymentMethodButton(ActionEvent event) throws IOException { SceneManager.switchScene("optionPayMethod.fxml"); }
+    @FXML private void helpNSupportButton(ActionEvent event) throws IOException { SceneManager.switchScene("helpNSupportUI.fxml"); }
+    @FXML private void billingTenantButton(ActionEvent event) throws IOException { SceneManager.switchScene("tenantBilling.fxml"); }
+    @FXML private void apartmentLeaseButton(ActionEvent event) throws IOException { SceneManager.switchScene("tenantLeaseUI.fxml"); }
+    @FXML private void PaymentHistoryButton(ActionEvent event) throws IOException { SceneManager.switchScene("PaymentHistoryUI.fxml"); }
+    @FXML private void contactNAboutButton(ActionEvent event) throws IOException { SceneManager.switchScene("contactNAbout.fxml"); }
+    @FXML private void dashboardButton(ActionEvent event) throws IOException { SceneManager.switchScene("tenantDashboard.fxml"); }
+
 }

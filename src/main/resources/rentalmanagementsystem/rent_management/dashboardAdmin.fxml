@@ -217,11 +217,16 @@
                                             <Font name="System Bold" size="18.0" />
                                         </font>
                                     </Button>
-                                    <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#billingStatement" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                    <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#billing" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
                                         <font>
                                             <Font name="System Bold" size="18.0" />
                                         </font>
                                     </Button>
+                           <Button alignment="CENTER" mnemonicParsing="false" onAction="#linkAccount" prefWidth="200.0" style="-fx-background-color: none;" text="Link Account">
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font>
+                           </Button>
                                     <Button alignment="CENTER" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#paymentTracking" prefWidth="200.0" style="-fx-background-color: none;" text="Payment Tracking">
                                         <font>
                                             <Font name="System Bold" size="18.0" />
@@ -232,7 +237,7 @@
                                             <Font name="System Bold" size="18.0" />
                                         </font>
                                     </Button>
-                                    <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#leaseManagement" prefWidth="200.0" style="-fx-background-color: none;" text="Lease Management" textAlignment="JUSTIFY">
+                                    <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#lease" prefWidth="200.0" style="-fx-background-color: none;" text="Lease Management" textAlignment="JUSTIFY">
                                         <font>
                                             <Font name="System Bold" size="18.0" />
                                         </font>
@@ -247,7 +252,7 @@
                                     <Font name="System Bold" size="30.0" />
                                 </font>
                             </Text>
-                            <Button layoutY="745.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <Button layoutY="745.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                 <font>
                                     <Font name="System Bold" size="18.0" />
                                 </font>

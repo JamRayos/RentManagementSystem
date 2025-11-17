@@ -39,4 +39,12 @@ public class OverdueDisplay {
     public void setDaysOverdue(int daysOverdue) {this.daysOverdue = daysOverdue;}
     public void setArchived(boolean archived) {this.archived = archived;}
 
+    public String getFormattedDueDate() {
+        if (dueDate != null) {
+            return dueDate.format(java.time.format.DateTimeFormatter.ofPattern("MMMM yyyy"));
+        }
+        return "";
+    }
+
+
 }

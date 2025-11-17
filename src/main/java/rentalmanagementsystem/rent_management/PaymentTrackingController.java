@@ -389,18 +389,24 @@ public class PaymentTrackingController {
         int paidTenants = 0;
 
         String sql = """
-                SELECT b.rentAmount, b.currentBalance, pt.amountPaid, pt.paymentDate
-                FROM billing b 
-                LEFT JOIN tenantAccount t ON t.unitId = b.unitId
-                LEFT JOIN paymentTracking pt ON t.tenantAccountId = pt.tenantId
-                WHERE YEAR(pt.paymentDate) = ? AND MONTH(pt.paymentDate) = ?
-                """;
+        SELECT 
+            b.rentAmount,
+            b.currentBalance,
+            pt.amountPaid
+        FROM billing b
+        JOIN tenantAccount t ON t.unitId = b.unitId
+        LEFT JOIN paymentTracking pt 
+            ON pt.tenantId = t.tenantAccountId
+            AND YEAR(pt.paymentDate) = ?
+            AND MONTH(pt.paymentDate) = ?
+        """;
 
-        try (Connection conn = DbConn.connectDB()){
+        try (Connection conn = DbConn.connectDB()) {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, currentYear);
             stmt.setInt(2, currentMonth);
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -408,13 +414,16 @@ public class PaymentTrackingController {
                 double currentBalance = rs.getDouble("currentBalance");
                 double paid = rs.getDouble("amountPaid");
 
+                // Add only non-null
                 rentCollected += paid;
 
-                if (paid >= rentAmount || currentBalance <= 0) {
+                // Count paid tenants
+                if (currentBalance <= 0) {
                     paidTenants++;
                 }
 
-                if (currentBalance > rentAmount){
+                // Correct overdue condition
+                if (currentBalance > 0) {
                     totalOverdue += currentBalance;
                 }
             }
@@ -423,37 +432,22 @@ public class PaymentTrackingController {
             totalPaidLabel.setText(String.valueOf(paidTenants));
             totalOverdueLabel.setText(String.format("₱%.2f", totalOverdue));
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void showAddPayment() {
         addPaymentPane.setVisible(true);
     }
 
-    @FXML
-    private void unitOverviewButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("unitsOverview.fxml");
-    }
-
-    @FXML
-    private void logOutButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("login.fxml");
-    }
-
-    @FXML
-    private void leaseButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("leaseManagement.fxml");
-    }
-
-    @FXML
-    private void linkAccount(ActionEvent event) throws IOException {
-        SceneManager.switchScene("roomAccount.fxml");
-    }
-
-    @FXML
-    private void overdueButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("overdueTenants.fxml");
-    }
+    @FXML private void dashboard (ActionEvent event) throws IOException {SceneManager.switchScene("dashboardAdmin.fxml");}
+    @FXML private void complaints (ActionEvent event) throws IOException {SceneManager.switchScene("adminComplaint.fxml");}
+    @FXML private void tenantOverview (ActionEvent event) throws IOException {SceneManager.switchScene("overviewOfTenants.fxml");}
+    @FXML private void billing (ActionEvent event) throws IOException {SceneManager.switchScene("billingStatement.fxml");}
+    @FXML private void linkAccount (ActionEvent event) throws IOException {SceneManager.switchScene("roomAccount.fxml");}
+    @FXML private void paymentTracking (ActionEvent event) throws IOException {SceneManager.switchScene("paymentTracking.fxml");}
+    @FXML private void overdue (ActionEvent event) throws IOException {SceneManager.switchScene("overdueTenants.fxml");}
+    @FXML private void lease (ActionEvent event) throws IOException {SceneManager.switchScene("leaseManagement.fxml");}
 }

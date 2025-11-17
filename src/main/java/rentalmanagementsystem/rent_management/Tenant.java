@@ -17,7 +17,19 @@ public class Tenant {
     private int unitId;
     private String password;
     private boolean archived;
+    private int leaseAgreementId;
 
+    public Tenant(int tenantId, String name, String username, String email, String contact, int unitId, String password, boolean archived, int leaseAgreementId){
+        this.tenantId = tenantId;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.contact = contact;
+        this.unitId = unitId;
+        this.password = password;
+        this.archived = archived;
+        this.leaseAgreementId = leaseAgreementId;
+    }
     public Tenant(int tenantId, String name, String username, String email, String contact, int unitId, String password, boolean archived){
         this.tenantId = tenantId;
         this.name = name;
@@ -28,6 +40,7 @@ public class Tenant {
         this.password = password;
         this.archived = archived;
     }
+
     public Tenant(int tenantId, String name, String username, String email, String contact, int unitId) {
         this.tenantId = tenantId;
         this.name = name;
@@ -46,6 +59,7 @@ public class Tenant {
     public int getUnitId() {return unitId;}
     public String getPassword() {return password;}
     public boolean getArchived() {return archived;}
+    public int getLeaseAgreementId() {return leaseAgreementId;}
 
 //    setters
     public void setTenantId(int tenantId) {this.tenantId = tenantId;}
@@ -56,5 +70,5 @@ public class Tenant {
     public void setUnitId(int unitId) {this.unitId = unitId;}
     public void setPassword(String password) {this.password = password;}
     public void setArchived(boolean archived) {this.archived = archived;}
-
+    public void setLeaseAgreementId(int leaseAgreementId) {this.leaseAgreementId = leaseAgreementId;}
 }

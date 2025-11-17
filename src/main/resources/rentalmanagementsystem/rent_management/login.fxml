@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -22,15 +26,47 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="loginBtn" layoutX="208.0" layoutY="623.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="44.0" prefWidth="242.0" text="LOGIN" />
-            <Button layoutX="377.0" layoutY="685.0" mnemonicParsing="false" text="create account" />
-            <Text layoutX="194.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dont's have an account?">
+            <Button fx:id="loginBtn" layoutX="208.0" layoutY="623.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="44.0" prefWidth="242.0" styleClass="loginBtn" stylesheets="@system.css" text="LOGIN">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button ellipsisString="---" layoutX="375.0" layoutY="697.0" mnemonicParsing="false" onAction="#toCreateAccount" style="-fx-background-color: none;" text="create account" textFill="#105e0d" underline="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Text layoutX="192.0" layoutY="717.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: none;" text="don't have an account yet?">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
             <PasswordField fx:id="passwordField" layoutX="146.0" layoutY="460.0" prefHeight="43.0" prefWidth="359.0" />
+            <Label layoutX="121.0" layoutY="148.0" text="WELCOME HOME!">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="192.0" layoutY="218.0" text="Where your home awaits">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
+      <ImageView fitHeight="633.0" fitWidth="659.0" layoutX="15.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/pavillion.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="131.0" layoutY="483.0" text="THE PAVILION">
+         <font>
+            <Font name="System Bold" size="60.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

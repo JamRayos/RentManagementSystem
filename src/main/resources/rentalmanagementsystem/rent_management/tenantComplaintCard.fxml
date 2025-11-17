@@ -20,8 +20,8 @@
       <Label fx:id="descriptionLabel" layoutX="35.0" layoutY="66.0" text="Label" />
       <Label layoutX="893.0" layoutY="134.0" text="Status:" />
       <Label fx:id="statusLabel" layoutX="947.0" layoutY="134.0" text="Label" />
-      <Button fx:id="deleteBtn" layoutX="1006.0" layoutY="26.0" mnemonicParsing="false" onAction="#onDelete" text="Button" />
-      <Button fx:id="editBtn" layoutX="1007.0" layoutY="58.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="deleteBtn" layoutX="1006.0" layoutY="26.0" mnemonicParsing="false" onAction="#onDelete" style="-fx-background-radius: 20;" text="Delete" />
+      <Button fx:id="editBtn" layoutX="1007.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-radius: 20;" text="Edit" />
    </children>
    <padding>
       <Insets bottom="10.0" />

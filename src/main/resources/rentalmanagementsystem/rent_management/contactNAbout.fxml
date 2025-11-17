@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: F3F8F2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.ContactNAboutController">
+    <children>
+        <HBox alignment="CENTER" layoutX="113.0" layoutY="589.0" prefHeight="160.0" prefWidth="1068.0" spacing="50.0" style="-fx-alignment: center;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="150.0" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 10; -fx-spacing: 3; -fx-alignment: center;">
+                    <children>
+                        <ImageView fitHeight="61.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/phone-call.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="PHONE" textAlignment="CENTER">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="-5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="0991 - 496 - 4423" textAlignment="CENTER">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+               <effect>
+                  <InnerShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="150.0" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 10; -fx-spacing: 3;">
+                    <children>
+                        <ImageView fitHeight="61.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/facebook.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="FACEBOOK">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="-5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="PL Jorge">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+               <effect>
+                  <InnerShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="240.0" layoutY="10.0" prefHeight="150.0" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 10; -fx-spacing: 3;">
+                    <children>
+                        <ImageView fitHeight="61.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/instagram.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="INSTAGRAM">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="-5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="choco_pau">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+               <effect>
+                  <InnerShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="470.0" layoutY="10.0" prefHeight="150.0" prefWidth="180.0" spacing="10.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 10; -fx-spacing: 3;">
+                    <children>
+                        <ImageView fitHeight="61.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/discord.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="DISCORD">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="-5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="xiaolongbao">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+               <effect>
+                  <InnerShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+                </VBox>
+            </children>
+        </HBox>
+        <Line endX="800.0" endY="-1.52587890625E-5" layoutX="437.0" layoutY="142.0" startX="-250.0" />
+        <Label layoutX="183.0" layoutY="72.0" text="APARTMENT INFORMATION">
+            <font>
+                <Font name="System Bold" size="50.0" />
+            </font>
+        </Label>
+      <ImageView fitHeight="350.0" fitWidth="687.0" layoutX="205.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/image6.png" />
+         </image>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <AnchorPane layoutX="620.0" layoutY="183.0" prefHeight="350.0" prefWidth="477.0" style="-fx-background-color: #D3E2CD; -fx-background-radius: 20;">
+         <children>
+            <Label contentDisplay="TOP" graphicTextGap="10.0" layoutX="183.0" layoutY="27.0" lineSpacing="10.0" text="ABOUT" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Label>
+            <Text layoutX="23.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Pavilion is more than just a residence; it is a community crafted for those who appreciate the finer things. Here in Pavilion, the community is built on the belief that where you live should feel like home. Our namesake reflects a central gathering place, and that spirit is alive in our resident and friendly atmosphere. Come and join a community that celebrates life, comfort, and the lasting relationships you build right outside your door." textAlignment="JUSTIFY" wrappingWidth="441.44439697265625">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="383.0" layoutY="658.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutX="66.0" layoutY="186.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="drawerPane" layoutX="-4.0" layoutY="-2.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #E0EDDB;">
+                     <children>
+                        <VBox fillWidth="false" layoutX="1.0" layoutY="230.0" prefHeight="366.0" prefWidth="227.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#dashboardButton" prefWidth="200.0" style="-fx-background-color: none;" text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#billingTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#paymentMethodButton" prefWidth="200.0" style="-fx-background-color: none;" text="Payment Method">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#complaintsTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Complaint">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#apartmentLeaseButton" prefWidth="200.0" style="-fx-background-color: none;" text="Apartment Lease">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#PaymentHistoryButton" prefWidth="200.0" style="-fx-background-color: none;" text="Payment History">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="263.0" mnemonicParsing="false" onAction="#HelpNSupportButton" prefWidth="200.0" style="-fx-background-color: none;" text="Help &amp; Support">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: none;" text="Contact &amp; About" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" />
+                           </padding>
+                        </VBox>
+                        <Button layoutY="745.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="usernameLabel" layoutX="24.0" layoutY="83.0" prefHeight="98.0" prefWidth="173.0" style="-fx-font-weight: bold; -fx-text-fill: #3F473A;" text="Welcome User" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="44.0" layoutY="93.0" prefHeight="600.0" prefWidth="39.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../../images/burger.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

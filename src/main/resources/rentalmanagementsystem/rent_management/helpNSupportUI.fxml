@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: F3F8F2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.HelpNSupportController">
+    <children>
+        <VBox layoutX="208.0" layoutY="189.0" prefHeight="492.0" prefWidth="969.0" spacing="45.0">
+            <children>
+                <HBox prefHeight="210.0" prefWidth="943.0" spacing="50.0">
+                    <children>
+                        <Button fx:id="BasicsBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-padding: 10; -fx-background-color: #E0EDDB; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Basics">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/idea.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                        <Button fx:id="ProfileBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-background-color: #E0EDDB; -fx-padding: 10; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Profile">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/user.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow blurType="TWO_PASS_BOX" height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                        <Button fx:id="PaymentBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-padding: 10; -fx-background-color: #E0EDDB; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Payment">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/money-bag.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox prefHeight="210.0" prefWidth="943.0" spacing="50.0">
+                    <children>
+                        <Button fx:id="MaintBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-padding: 10; -fx-background-color: #E0EDDB; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Maintenance">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/tools.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                        <Button fx:id="LeaAgrBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-padding: 10; -fx-background-color: #E0EDDB; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Lease Agreement">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/contract.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                        <Button fx:id="HelpDeskBtn" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="280.0" style="-fx-padding: 10; -fx-background-color: #E0EDDB; -fx-background-radius: 12; -fx-border-radius: 12; -fx-graphic-text-gap: 10;" text="Onsite HelpDesk">
+                            <graphic>
+                                <ImageView fitHeight="90.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/bill.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                            <effect>
+                                <DropShadow blurType="TWO_PASS_BOX" offsetY="4.0">
+                                    <color>
+                                        <Color red="0.7450980544090271" green="0.7411764860153198" blue="0.7411764860153198" />
+                                    </color>
+                                    <input>
+                                        <InnerShadow height="10.0" radius="2.0" width="0.0">
+                                            <color>
+                                                <Color red="0.5607843399047852" green="0.5529412031173706" blue="0.5529412031173706" />
+                                            </color>
+                                        </InnerShadow>
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <Line endX="755.800048828125" endY="1.52587890625E-5" layoutX="437.0" layoutY="142.0" startX="-250.0" />
+        <Label layoutX="183.0" layoutY="72.0" style="-fx-font-weight: bold;" text="HELP &amp; SUPPORT">
+            <font>
+                <Font size="50.0" />
+            </font>
+        </Label>
+        <Line endX="755.800048828125" endY="1.52587890625E-5" layoutX="437.0" layoutY="707.0" startX="-250.0" />
+        <Pane fx:id="Basic" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Basics">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="76.0" layoutY="145.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Why does the landlord use this system?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The system helps the landlord automate management and organize important records like tenant data and unit status, which prevents misplaced papers and speeding up transactions." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What’s the main benefit for me (the tenant)?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The goal is to ensure secured, accurate, and organized data, as well as faster communication for a smoother overall experience." wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Where can I get help if I have a question about the system?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You can find contact information and support options by checking the Onsite HelpDesk FAQs section or going to the Contact and About section of the system." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="Profile" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit1" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="76.0" layoutY="141.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What information about me is stored digitally?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The system securely stores your private information and digital copies of your lease agreements. This ensures your data is organized and protected against loss." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Where can I review the terms and conditions?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The clear and organized Terms and Conditions are stored in the system for easy reference and transparency. You can access and download this in the Apartment Lease section" wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Can I check or update my personal details in the system?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No, tenants currently cannot view or edit their profile details. All your information and records are managed securely by the landlord through the management system. For any necessary updates, please contact the landlord directly." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="payment" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit2" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="76.0" layoutY="127.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What payment methods are accepted?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Payments can be made via cash, bank transfer, or approved e-wallets such as GCash and Paymaya." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What happens if I miss a payment?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Late or incomplete payments may result in penalties or official notices from the landlord." wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Is my security deposit refundable?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yes, it’s refundable after thorough inspection, minus any unpaid charges or repair costs." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Can I check my payment records?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yes, all payments and charges are recorded and accessible in your account." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="When is my rent due?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The due date can be viewed in your dashboard along with the rent amount." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="Maintenance" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maintenance">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit3" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="76.0" layoutY="140.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do I report a maintenance issue?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You can report these issues in the complaints section and creating a new entry." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Who’s responsible for the repair costs?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The landlord will cover repairs caused by normal deterioration. However, if the damage is due to the tenant’s negligence, the repair cost will be charged to the tenant’s next billing." wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Can I make changes to my unit?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Any alterations such as painting, drilling, or installing furniture must have a written approval from Mr. Martin. Unauthorized changes may cause deductions from your deposit." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How can I check if my maintenance request is completed?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To check the maintenance update, the admin will send an e-mail to you about its status." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="leaseAgreement" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lease Agreement">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit4" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="76.0" layoutY="108.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Landlord Information:">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  Mr. Coco Martin" wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address: #69 Los Angeles St. Malabon City, Philippines." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What’s included in my lease?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Details such as rent amount, duration, security deposit, and terms and conditions." wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Can I end my lease early?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Early termination is allowed with notice, but your deposit may cover unpaid rent or fees." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How can I renew my lease?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notify the landlord before your lease end date. Renewals may include updated terms." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What if I break the lease rules?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Violations such as late rent or property damage will be recorded in your account and may result in penalties or contract termination" wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="helpDesk" layoutX="174.0" layoutY="149.0" prefHeight="546.0" prefWidth="1030.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" visible="false">
+            <children>
+                <Text layoutX="62.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Onsite HelpDesk">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+                <Line endX="754.800048828125" endY="1.52587890625E-5" layoutX="167.0" layoutY="80.0" startX="-120.93331909179688" startY="1.52587890625E-5" />
+                <Button fx:id="exit5" layoutX="937.0" layoutY="-2.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="71.0" prefWidth="101.0" style="-fx-background-color: NONE;" text="X">
+                    <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                    </font>
+                </Button>
+                <VBox layoutX="77.0" layoutY="129.0" prefHeight="264.0" prefWidth="893.0" spacing="8.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is the Onsite HelpDesk for?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a way for tenants to contact the landlord or admin directly about account issues, payments, or complaints." wrappingWidth="787.3382568359375">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How can I contact the helpdesk?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You can reach the Online HelpDesk by going to the Contact and About section and using the provided contact methods, or visiting the admin office." wrappingWidth="781.9871826171875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="When is the HelpDesk available?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The HelpDesk is only accessible during regular business hours." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What problems can I report?">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log in issues, payment confirmation delays, incorrect billing, maintenance follow-ups, or general system concerns." wrappingWidth="779.54296875">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="20.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+      <AnchorPane layoutX="393.0" layoutY="668.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutX="66.0" layoutY="186.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="drawerPane" layoutX="-4.0" layoutY="-2.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #E0EDDB;">
+                     <children>
+                        <VBox fillWidth="false" layoutX="1.0" layoutY="230.0" prefHeight="366.0" prefWidth="227.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#dashboardButton" prefWidth="200.0" style="-fx-background-color: none;" text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#billingTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#paymentMethodButton" prefWidth="200.0" style="-fx-background-color: none;" text="Payment Method">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#complaintsTenantButton" prefWidth="200.0" style="-fx-background-color: none;" text="Complaint">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#apartmentLeaseButton" prefWidth="200.0" style="-fx-background-color: none;" text="Apartment Lease">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#PaymentHistoryButton" prefWidth="200.0" style="-fx-background-color: none;" text="Payment History">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="263.0" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: none;" text="Help &amp; Support">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#contactNAboutButton" prefWidth="200.0" style="-fx-background-color: none;" text="Contact &amp; About" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" />
+                           </padding>
+                        </VBox>
+                        <Button layoutY="745.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="usernameLabel" layoutX="24.0" layoutY="83.0" prefHeight="98.0" prefWidth="173.0" style="-fx-font-weight: bold; -fx-text-fill: #3F473A;" text="Welcome User" wrapText="true">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="44.0" layoutY="93.0" prefHeight="600.0" prefWidth="39.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../../images/burger.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

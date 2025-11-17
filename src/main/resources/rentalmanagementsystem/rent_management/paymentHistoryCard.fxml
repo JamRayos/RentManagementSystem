@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="122.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.paymentHistoryCardController">
+    <children>
+        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="98.0" prefWidth="837.0" style="-fx-background-color: #EAF4F4; -fx-background-radius: 10;">
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" offsetY="2.0" radius="4.75" width="0.0">
+                    <color>
+                        <Color red="0.5600000023841858" green="0.520799994468689" blue="0.520799994468689" />
+                    </color>
+                </InnerShadow>
+            </effect>
+            <children>
+                <Label fx:id="paymentDate" layoutX="26.0" layoutY="10.0" prefHeight="78.0" prefWidth="221.0" style="-fx-font-weight: bold; -fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+                <Line endX="-100.0" endY="122.111083984375" layoutX="360.0" layoutY="-36.0" startX="-100.0" startY="47.888916015625" stroke="#aaafb4" strokeWidth="1.5" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                <Label fx:id="paymentAmount" layoutX="270.0" layoutY="10.0" prefHeight="78.0" prefWidth="221.0" style="-fx-font-weight: bold; -fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+                <Line endX="-100.0" endY="122.111083984375" layoutX="600.0" layoutY="-37.0" startX="-100.0" startY="47.888916015625" stroke="#aaafb4" strokeWidth="1.5" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                <Label fx:id="paymentMethod" layoutX="519.0" layoutY="10.0" prefHeight="78.0" prefWidth="233.0" style="-fx-font-weight: bold; -fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

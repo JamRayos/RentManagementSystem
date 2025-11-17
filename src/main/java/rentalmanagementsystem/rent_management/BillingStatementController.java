@@ -1,6 +1,8 @@
 package rentalmanagementsystem.rent_management;
 
+import javafx.animation.TranslateTransition;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
@@ -11,16 +13,19 @@ import javafx.scene.input.KeyEvent;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Random;
 
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -29,6 +34,11 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 
 
 public class BillingStatementController {
+
+    @FXML AnchorPane drawerPane;
+    @FXML Button burger;
+    private boolean drawerOpen = true;
+
     @FXML private TextField nameField;
     @FXML private TextField maintenanceField;
     @FXML private TextArea damageField;
@@ -41,6 +51,10 @@ public class BillingStatementController {
     private int unitId;
 
     @FXML public void initialize() {
+
+        drawerPane.setTranslateX(-350);
+        drawerOpen = false;
+
         nameField.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
             String query = nameField.getText().trim();
             if (!query.isEmpty()) {
@@ -51,6 +65,22 @@ public class BillingStatementController {
         });
     }
 
+    @FXML //for the side drawer
+    private void toggleDrawer() {
+
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.millis(300));
+        slide.setNode(drawerPane);
+
+        if (drawerOpen) {
+            slide.setToX(-250);
+            drawerOpen = false;
+        } else {
+            slide.setToX(0);
+            drawerOpen = true;
+        }
+        slide.play();
+    }
 
     private void showTenantSuggestions(String query){
         suggestionsMenu.getItems().clear();
@@ -227,7 +257,7 @@ public class BillingStatementController {
             File outFile = new File(outputPath);
             outFile.getParentFile().mkdirs();
             doc.save(outFile);
-            System.out.println("✅ PDF generated and saved to: " + outFile.getAbsolutePath());
+            System.out.println("PDF generated and saved to: " + outFile.getAbsolutePath());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -356,4 +386,13 @@ public class BillingStatementController {
             return false;
         }
     }
+
+    @FXML private void dashboard (ActionEvent event) throws IOException {SceneManager.switchScene("dashboardAdmin.fxml");}
+    @FXML private void complaints (ActionEvent event) throws IOException {SceneManager.switchScene("adminComplaint.fxml");}
+    @FXML private void tenantOverview (ActionEvent event) throws IOException {SceneManager.switchScene("overviewOfTenants.fxml");}
+    @FXML private void billing (ActionEvent event) throws IOException {SceneManager.switchScene("billingStatement.fxml");}
+    @FXML private void linkAccount (ActionEvent event) throws IOException {SceneManager.switchScene("roomAccount.fxml");}
+    @FXML private void paymentTracking (ActionEvent event) throws IOException {SceneManager.switchScene("paymentTracking.fxml");}
+    @FXML private void overdue (ActionEvent event) throws IOException {SceneManager.switchScene("overdueTenants.fxml");}
+    @FXML private void lease (ActionEvent event) throws IOException {SceneManager.switchScene("leaseManagement.fxml");}
 }

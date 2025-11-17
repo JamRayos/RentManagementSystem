@@ -7,10 +7,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IO;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class LoginController {
 
@@ -27,8 +25,7 @@ public class LoginController {
         Tenant tenant = validateLogin(username, password);
         if (tenant != null){
             SessionLogin.setCurrentTenant(tenant);
-
-            SceneManager.switchScene("complaintTenant.fxml");
+            SceneManager.switchScene("tenantDashboard.fxml");
         } else {
             AlertMessage.showAlert(Alert.AlertType.ERROR, "Error", "Invalid username or password");
         }
@@ -40,7 +37,7 @@ public class LoginController {
 
         boolean isAdmin = validateAdminLogin(username, password);
         if (isAdmin) {
-            SceneManager.switchScene("adminComplaint.fxml");
+            SceneManager.switchScene("dashboardAdmin.fxml");
         } else {
             AlertMessage.showAlert(Alert.AlertType.ERROR, "login Failed", "Invalid username or password");
         }
@@ -61,24 +58,163 @@ public class LoginController {
     private Tenant validateLogin(String username, String password) {
         String query = "SELECT * FROM tenantAccount WHERE username = ? AND password = ?";
 
-        try(Connection conn = DbConn.connectDB()){
+        try (Connection conn = DbConn.connectDB()) {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
+
+                int tenantId = rs.getInt("tenantAccountId");
+                int unitId = rs.getInt("unitId");
+
+                Date endDate = getEndDate(conn, unitId);
+                Date evictionDate = getEvictionDate(conn, tenantId);
+
+                boolean isExpired = endDate != null &&
+                        endDate.toLocalDate().isBefore(LocalDate.now());
+
+                boolean isEvicted = evictionDate != null;
+
+                if (isExpired || isEvicted) {
+                    archiveTenantData(conn, tenantId, unitId);
+                    return null; // prevent login
+                }
+
+                // If still active → login
                 return new Tenant(
-                        rs.getInt("tenantAccountId"),
+                        tenantId,
                         rs.getString("name"),
                         rs.getString("username"),
                         rs.getString("email"),
                         rs.getString("contactNumber"),
-                        rs.getInt("unitId")
+                        unitId
                 );
             }
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private void archiveTenantData(Connection conn, int tenantId, int unitId) throws SQLException {
+
+        // 1️⃣ ARCHIVE TENANT ACCOUNT
+        String tenantArchiveSQL = """
+        INSERT INTO tenantAccountArchive 
+        (tenantAccountId, unitId, name, username, email, contactNumber, password, archived, leaseAgreementId, numberOfTenants)
+        SELECT tenantAccountId, unitId, name, username, email, contactNumber, password, archived, leaseAgreementId, numberOfTenants
+        FROM tenantAccount WHERE tenantAccountId = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(tenantArchiveSQL)) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        String payArchiveSQL = """
+        INSERT INTO paymentTrackingArchive
+        (paymentId, tenantId, modeOfPayment, amountPaid, paymentDate, paymentStatus)
+        SELECT paymentTrackingId, tenantId, modeOfPayment, amountPaid, paymentDate, paymentStatus
+        FROM paymentTracking WHERE tenantId = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(payArchiveSQL)) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        // 3️⃣ ARCHIVE BILLING
+        String billingArchiveSQL = """
+        INSERT INTO billingArchive
+        (billingId, unitId, rentAmount, billingPeriod, paymentStatus, currentBalance, advanceBalance)
+        SELECT billingId, unitId, rentAmount, billingPeriod, paymentStatus, currentBalance, advanceBalance
+        FROM billing WHERE unitId = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(billingArchiveSQL)) {
+            ps.setInt(1, unitId);
+            ps.executeUpdate();
+        }
+
+        // 4️⃣ ARCHIVE BILLING STATEMENT
+        String statementArchiveSQL = """
+        INSERT INTO billingStatementArchive
+        (billingStatementId, tenantId, totalAmount, rentAmount, waterAmount, maintenanceAmount, damage, waterBillDate, pdfPath, isSent, sendDate)
+        SELECT billingStatementId, tenantId, totalAmount, rentAmount, waterAmount, maintenanceAmount, damage, waterBillDate, pdfPath, isSent, sendDate
+        FROM billingStatement WHERE tenantId = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(statementArchiveSQL)) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        // 5️⃣ DELETE ORIGINAL RECORDS
+        try (PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM paymentTracking WHERE tenantId = ?")) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        try (PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM billing WHERE unitId = ?")) {
+            ps.setInt(1, unitId);
+            ps.executeUpdate();
+        }
+
+        try (PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM billingStatement WHERE tenantId = ?")) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        try (PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM tenantAccount WHERE tenantAccountId = ?")) {
+            ps.setInt(1, tenantId);
+            ps.executeUpdate();
+        }
+
+        // 6️⃣ UPDATE ROOM STATUS
+        String updateRoom = """
+        UPDATE roomAccount 
+        SET startDate = NULL, endDate = NULL, unitStatus = 'vacant' 
+        WHERE unitId = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(updateRoom)) {
+            ps.setInt(1, unitId);
+            ps.executeUpdate();
+        }
+    }
+
+
+    private Date getEvictionDate(Connection conn, int tenantId) throws SQLException {
+
+        String evictQuery = "SELECT evictionDate FROM evictionNotice WHERE tenantId = ? AND status = 'Active'";
+
+        PreparedStatement stmt = conn.prepareStatement(evictQuery);
+        stmt.setInt(1, tenantId);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getDate("evictionDate");
+        }
+
+        return null;
+    }
+
+    private java.sql.Date getEndDate(Connection conn, int unitId) throws SQLException {
+        String roomQuery = "SELECT endDate FROM roomAccount WHERE unitId = ?";
+        PreparedStatement stmt = conn.prepareStatement(roomQuery);
+        stmt.setInt(1, unitId);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getDate("endDate");
         }
         return null;
     }
@@ -98,5 +234,9 @@ public class LoginController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @FXML private void toCreateAccount() throws IOException{
+        SceneManager.switchScene("createAccount.fxml");
     }
 }

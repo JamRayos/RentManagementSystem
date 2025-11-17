@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,6 +9,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,20 +19,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: F3F8F2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: F3F8F2;" stylesheets="@system.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rentalmanagementsystem.rent_management.HelloController">
    <children>
-      <TableView fx:id="roomTableView" layoutX="20.0" layoutY="218.0" prefHeight="550.0" prefWidth="753.0">
+      <TableView fx:id="roomTableView" layoutX="20.0" layoutY="236.0" prefHeight="550.0" prefWidth="775.0">
         <columns>
-          <TableColumn id="unitId" fx:id="unitId" prefWidth="75.0" text="roomId" />
-          <TableColumn id="roomNo" fx:id="roomNo" prefWidth="75.0" text="roomNo" />
-            <TableColumn id="startDate" fx:id="startDate" prefWidth="75.0" text="start Date" />
-            <TableColumn id="endDate" fx:id="endDate" prefWidth="75.0" text="End Date" />
-            <TableColumn id="unitStatus" fx:id="unitStatus" prefWidth="75.0" text="unitStatus" />
-            <TableColumn id="price" fx:id="price" prefWidth="75.0" text="price" />
-            <TableColumn fx:id="capacity" prefWidth="75.0" text="Capacity" />
-            <TableColumn id="areaSize" fx:id="areaSize" prefWidth="75.0" text="areasize" />
-            <TableColumn fx:id="otp" prefWidth="75.0" text="otp" />
+          <TableColumn id="unitId" fx:id="unitId" prefWidth="82.0" text="roomId" />
+          <TableColumn id="roomNo" fx:id="roomNo" prefWidth="76.0" text="roomNo" />
+            <TableColumn id="startDate" fx:id="startDate" prefWidth="83.0" text="start Date" />
+            <TableColumn id="endDate" fx:id="endDate" prefWidth="79.0" text="End Date" />
+            <TableColumn id="unitStatus" fx:id="unitStatus" prefWidth="86.0" text="unitStatus" />
+            <TableColumn id="price" fx:id="price" prefWidth="111.0" text="price" />
+            <TableColumn fx:id="capacity" prefWidth="93.0" text="Capacity" />
+            <TableColumn id="areaSize" fx:id="areaSize" prefWidth="81.0" text="areasize" />
+            <TableColumn fx:id="otp" prefWidth="83.0" text="otp" />
         </columns>
+         <effect>
+            <DropShadow />
+         </effect>
       </TableView>
       <VBox layoutX="403.0" layoutY="14.0" prefHeight="143.0" prefWidth="1280.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -41,33 +47,33 @@
             <Separator prefWidth="200.0" />
          </children>
       </VBox>
-      <AnchorPane layoutX="806.0" layoutY="218.0" prefHeight="550.0" prefWidth="454.0" style="-fx-background-color: E0EDDB;">
+      <AnchorPane layoutX="806.0" layoutY="236.0" prefHeight="550.0" prefWidth="454.0" style="-fx-background-color: E0EDDB; -fx-background-radius: 20;">
          <children>
-            <Text layoutX="29.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room ID">
+            <Text layoutX="29.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room ID">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="28.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date">
+            <Text layoutX="28.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="28.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date">
+            <Text layoutX="28.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="28.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+            <Text layoutX="28.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="emailField" layoutX="247.0" layoutY="270.0" prefHeight="25.0" prefWidth="174.0" />
-            <DatePicker fx:id="endDatePicker" layoutX="247.0" layoutY="210.0" />
-            <DatePicker id="startDate" fx:id="startDatePicker" layoutX="247.0" layoutY="148.0" />
-            <TextField fx:id="unitIdField" layoutX="247.0" layoutY="93.0" prefHeight="25.0" prefWidth="174.0" />
-            <Text layoutX="28.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Billing Period">
+            <TextField fx:id="emailField" layoutX="247.0" layoutY="223.0" prefHeight="25.0" prefWidth="174.0" />
+            <DatePicker fx:id="endDatePicker" layoutX="247.0" layoutY="163.0" />
+            <DatePicker id="startDate" fx:id="startDatePicker" layoutX="247.0" layoutY="101.0" />
+            <TextField fx:id="unitIdField" layoutX="247.0" layoutY="46.0" prefHeight="25.0" prefWidth="174.0" />
+            <Text layoutX="28.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Billing Period">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -78,45 +84,213 @@
                </font>
             </Text>
             <Button layoutX="28.0" layoutY="465.0" mnemonicParsing="false" onAction="#sendLink" prefHeight="46.0" prefWidth="114.0" text="send me" />
-            <Label fx:id="rentAmountLabel" layoutX="300.0" layoutY="396.0" text="Label" />
-            <ComboBox fx:id="billingDropDown" layoutX="247.0" layoutY="326.0" prefWidth="174.0" />
+            <Label fx:id="rentAmountLabel" layoutX="300.0" layoutY="396.0" />
+            <ComboBox fx:id="billingDropDown" layoutX="247.0" layoutY="279.0" prefWidth="174.0" />
+            <Text layoutX="30.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. of Occupants">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="occupants" layoutX="247.0" layoutY="336.0" prefHeight="25.0" prefWidth="174.0" />
          </children>
+         <effect>
+            <InnerShadow height="15.0" radius="7.0" width="15.0" />
+         </effect>
       </AnchorPane>
-      <HBox layoutX="20.0" layoutY="119.0" prefHeight="65.0" prefWidth="552.0" spacing="20.0">
+      <HBox layoutX="23.0" layoutY="119.0" prefHeight="55.0" prefWidth="552.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="89.0" text="Vacant" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="89.0" text="Reserved" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="94.0" text="Occupied" />
+            <Button mnemonicParsing="false" onAction="#loadDataFromDatabaseVacant" prefHeight="38.0" prefWidth="89.0" styleClass="loginBtn" text="Vacant">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#loadDataFromDatabaseOccupied" prefHeight="38.0" prefWidth="94.0" styleClass="loginBtn" text="Occupied">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect></Button>
          </children>
       </HBox>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="713.0" layoutY="184.0" prefHeight="39.0" prefWidth="82.0" style="-fx-background-color: white; -fx-background-radius: 10 20 10 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
          <children>
-            <Button fx:id="burger" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
-            <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="800.0" prefWidth="64.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="25.0" layoutY="11.0" text="OTP">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="184.0" prefHeight="39.0" prefWidth="82.0" style="-fx-background-color: white; -fx-background-radius: 20 10 10 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="36.0" layoutY="11.0" text="ID">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="104.0" layoutY="184.0" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="25.0" layoutY="11.0" text="UNIT">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="181.0" layoutY="184.0" prefHeight="39.0" prefWidth="82.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="24.0" layoutY="11.0" text="START">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="265.0" layoutY="184.0" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="25.0" layoutY="11.0" text="END">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="342.0" layoutY="184.0" prefHeight="39.0" prefWidth="82.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="20.0" layoutY="11.0" text="STATUS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="428.0" layoutY="184.0" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="39.0" layoutY="11.0" text="PRICE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="540.0" layoutY="184.0" prefHeight="39.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="18.0" layoutY="11.0" text="CAPACITY">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="632.0" layoutY="184.0" prefHeight="39.0" prefWidth="78.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Label layoutX="12.0" layoutY="11.0" text="AREASIZE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="383.0" layoutY="658.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="burger1" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutX="66.0" layoutY="186.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="burger1" mnemonicParsing="false" onAction="#toggleDrawer" onMouseClicked="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" />
-                  <AnchorPane fx:id="drawerPane" layoutX="28.0" layoutY="20.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: E0EDDB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Button fx:id="burger11" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#toggleDrawer" prefHeight="67.0" prefWidth="69.0" style="-fx-background-color: none;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="drawerPane" layoutX="-4.0" layoutY="-2.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #E0EDDB;">
                      <children>
-                        <VBox layoutX="28.0" layoutY="77.0" prefHeight="338.0" prefWidth="132.0" spacing="20.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="133.0">
+                        <VBox fillWidth="false" layoutX="1.0" layoutY="230.0" prefHeight="366.0" prefWidth="227.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="DASHBOARD" />
-                              <Button mnemonicParsing="false" onAction="#paymentTrackingButton" prefHeight="38.0" prefWidth="200.0" text="Payment Tracking" />
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="room account" />
-                              <Button mnemonicParsing="false" onAction="#overdueButton" prefHeight="38.0" prefWidth="200.0" text="overdue" />
-                              <Button mnemonicParsing="false" onAction="#leaseButton" prefHeight="38.0" prefWidth="200.0" text="lease management" />
-                              <Button mnemonicParsing="false" onAction="#unitOverviewButton" prefHeight="38.0" prefWidth="200.0" text="units overview" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#dashboard" prefWidth="200.0" style="-fx-background-color: none;" text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#complaints" prefWidth="200.0" style="-fx-background-color: none;" text="Complaints">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#tenantOverview" prefWidth="200.0" style="-fx-background-color: none;" text="Tenant Overview">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#billing" prefWidth="200.0" style="-fx-background-color: none;" text="Billing Statement">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: none;" text="Link Account">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#paymentTracking" prefWidth="200.0" style="-fx-background-color: none;" text="Payment Tracking">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="263.0" mnemonicParsing="false" onAction="#overdue" prefWidth="200.0" style="-fx-background-color: none;" text="Overdue">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="CENTER" layoutX="25.0" layoutY="326.0" mnemonicParsing="false" onAction="#lease" prefWidth="200.0" style="-fx-background-color: none;" text="Lease Management" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
                            </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" />
+                           </padding>
                         </VBox>
-                        <Button layoutX="3.0" layoutY="748.0" mnemonicParsing="false" onAction="#logOutButton" prefHeight="38.0" prefWidth="132.0" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Text fill="#3f473a" layoutX="21.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Admin" wrappingWidth="217.20000000000005">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Button layoutY="745.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: none;" text="LOGOUT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="34.0" layoutY="83.0" prefHeight="600.0" prefWidth="39.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="44.0" layoutY="93.0" prefHeight="600.0" prefWidth="39.0" style="-fx-background-color: none;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="menuButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer">
+                        <Button fx:id="menuButton1" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleDrawer" style="-fx-background-color: none;">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="24.0">
                                  <image>
-                                    <Image url="@../../../../../../Project_System/src/main/resources/images/menu.png" />
+                                    <Image url="@../../images/burger.png" />
                                  </image>
                               </ImageView>
                            </graphic>

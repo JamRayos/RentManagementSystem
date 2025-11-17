@@ -35,6 +35,7 @@ public class HelloController {
     @FXML TableColumn<Room, String> otp;
 
     @FXML TextField unitIdField;
+    @FXML TextField occupants;
     @FXML DatePicker startDatePicker;
     @FXML DatePicker endDatePicker;
     @FXML TextField emailField;
@@ -120,6 +121,80 @@ public class HelloController {
         }
     }
 
+    @FXML
+    private void loadDataFromDatabaseVacant() {
+        data.clear();
+
+        try {
+            Connection conn = DbConn.connectDB();
+            String query = """
+                    SELECT * FROM roomaccount WHERE unitStatus = 'vacant'
+                    """;
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Timestamp timestamp = rs.getTimestamp("startDate");
+                Timestamp timeStamp = rs.getTimestamp("endDate");
+                LocalDateTime startDate = timestamp != null ? timestamp.toLocalDateTime() : null;
+                LocalDateTime endDate = timeStamp != null ? timeStamp.toLocalDateTime() : null;
+
+                data.add(new Room(
+                        rs.getInt("unitId"),
+                        rs.getString("roomNo"),
+                        startDate,
+                        endDate,
+                        rs.getString("unitStatus"),
+                        rs.getDouble("price"),
+                        rs.getDouble("areaSize"),
+                        rs.getInt("capacity"),
+                        rs.getString("otp")
+                ));
+            }
+            roomTableView.setItems(data);
+            conn.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void loadDataFromDatabaseOccupied() {
+        data.clear();
+
+        try {
+            Connection conn = DbConn.connectDB();
+            String query = """
+                    SELECT * FROM roomaccount WHERE unitStatus = 'occupied'
+                    """;
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Timestamp timestamp = rs.getTimestamp("startDate");
+                Timestamp timeStamp = rs.getTimestamp("endDate");
+                LocalDateTime startDate = timestamp != null ? timestamp.toLocalDateTime() : null;
+                LocalDateTime endDate = timeStamp != null ? timeStamp.toLocalDateTime() : null;
+
+                data.add(new Room(
+                        rs.getInt("unitId"),
+                        rs.getString("roomNo"),
+                        startDate,
+                        endDate,
+                        rs.getString("unitStatus"),
+                        rs.getDouble("price"),
+                        rs.getDouble("areaSize"),
+                        rs.getInt("capacity"),
+                        rs.getString("otp")
+                ));
+            }
+            roomTableView.setItems(data);
+            conn.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     @FXML private void sendLink(){
         try {
             String otpCode = EmailSender.generateOTP();
@@ -127,6 +202,7 @@ public class HelloController {
             LocalDateTime start = startDatePicker.getValue().atStartOfDay();
             LocalDateTime end = endDatePicker.getValue().atStartOfDay();
             String billingPeriod = billingDropDown.getValue();
+            int occupantCount = Integer.parseInt(occupants.getText());
 
             if (startDatePicker.getValue() == null || endDatePicker.getValue() == null || billingDropDown.getValue() == null) {
                 AlertMessage.showAlert(AlertType.WARNING, "Incomplete Data", "Please fill out all fields before sending.");
@@ -162,9 +238,22 @@ public class HelloController {
             int billingId = dao.linkTenant(room, billing);
 
             if (billingId > 0) {
+                String insertOccupants = """
+                INSERT INTO numberOfTenants (unitId, occupants)
+                VALUES (?, ?)
+                """;
 
-                recordAdvancePayment(billingId, (rentAmount + 10000), billingDropDown.getValue());
+                try (Connection conn = DbConn.connectDB();
+                     PreparedStatement stmt = conn.prepareStatement(insertOccupants)) {
 
+                    stmt.setInt(1, unitId);
+                    stmt.setInt(2, occupantCount);
+                    stmt.executeUpdate();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    AlertMessage.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save occupants: " + e.getMessage());
+                }
                 AlertMessage.showAlert(AlertType.INFORMATION, "Success", "Tenant linked with Billing ID: " + billingId);
                 new Thread(() -> {
                     EmailSender.sendOTP(tenantEmail, selectedRoom.getRoomNo(), otpCode);
@@ -180,27 +269,6 @@ public class HelloController {
         }
     }
 
-    private void recordAdvancePayment(int tenantId, double totalAdvanceAmount, String billingPeriod){
-        try (Connection conn = DbConn.connectDB()){
-            String insertQuery = """
-                    INSERT INTO paymentTracking (tenantId, modeOfPayment, amountPaid, paymentStatus)
-                    VALUES ()
-                    """;
-            PreparedStatement stmt = conn.prepareStatement(insertQuery);
-
-            stmt.setInt(1, tenantId);
-            stmt.setString(2, "cash");
-            stmt.setDouble(3, totalAdvanceAmount);
-            stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-            stmt.setString(5, "paid");
-            stmt.executeUpdate();
-
-        } catch (SQLException e){
-            e.printStackTrace();
-            AlertMessage.showAlert(AlertType.ERROR, "Database Error", "Failed to record advance payment: " + e.getMessage());
-        }
-    }
-
     private Room findRoomById(int id) {
         if (roomTableView != null && roomTableView.getItems() != null){
             return roomTableView.getItems().stream()
@@ -211,29 +279,13 @@ public class HelloController {
         return null;
     }
 
-    @FXML
-    private void unitOverviewButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("unitsOverview.fxml");
-    }
-
-    @FXML
-    private void logOutButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("login.fxml");
-    }
-
-    @FXML
-    private void leaseButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("leaseManagement.fxml");
-    }
-
-    @FXML
-    private void paymentTrackingButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("paymentTracking.fxml");
-    }
-
-    @FXML
-    private void overdueButton(ActionEvent event) throws IOException {
-        SceneManager.switchScene("overdueTenants.fxml");
-    }
+    @FXML private void dashboard (ActionEvent event) throws IOException {SceneManager.switchScene("dashboardAdmin.fxml");}
+    @FXML private void complaints (ActionEvent event) throws IOException {SceneManager.switchScene("adminComplaint.fxml");}
+    @FXML private void tenantOverview (ActionEvent event) throws IOException {SceneManager.switchScene("overviewOfTenants.fxml");}
+    @FXML private void billing (ActionEvent event) throws IOException {SceneManager.switchScene("billingStatement.fxml");}
+    @FXML private void linkAccount (ActionEvent event) throws IOException {SceneManager.switchScene("roomAccount.fxml");}
+    @FXML private void paymentTracking (ActionEvent event) throws IOException {SceneManager.switchScene("paymentTracking.fxml");}
+    @FXML private void overdue (ActionEvent event) throws IOException {SceneManager.switchScene("overdueTenants.fxml");}
+    @FXML private void lease (ActionEvent event) throws IOException {SceneManager.switchScene("leaseManagement.fxml");}
 
 }

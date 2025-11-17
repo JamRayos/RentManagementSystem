@@ -19,7 +19,7 @@
                 <Font size="50.0" />
             </font>
         </Label>
-        <Button layoutX="158.0" layoutY="201.0" mnemonicParsing="false" onAction="#toAdminLogin" prefHeight="356.0" prefWidth="397.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 20;">
+        <Button layoutX="158.0" layoutY="201.0" mnemonicParsing="false" onAction="#toTenantLogin" prefHeight="356.0" prefWidth="397.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 20;">
             <graphic>
                 <ImageView fitHeight="212.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -28,7 +28,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button layoutX="742.0" layoutY="201.0" mnemonicParsing="false" onAction="#toTenantLogin" prefHeight="356.0" prefWidth="397.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 20;">
+        <Button layoutX="742.0" layoutY="201.0" mnemonicParsing="false" onAction="#toAdminLogin" prefHeight="356.0" prefWidth="397.0" style="-fx-background-color: #8BAC7D; -fx-background-radius: 20;">
             <graphic>
                 <ImageView fitHeight="212.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                     <image>
